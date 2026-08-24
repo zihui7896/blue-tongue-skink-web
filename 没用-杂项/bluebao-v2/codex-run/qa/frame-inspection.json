@@ -1,0 +1,990 @@
+{
+  "ok": true,
+  "frames_root": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames",
+  "errors": [],
+  "warnings": [
+    "idle used extraction method stable-slots; component extraction is preferred",
+    "running-right used extraction method stable-slots; component extraction is preferred",
+    "running-left used extraction method stable-slots; component extraction is preferred",
+    "waving used extraction method stable-slots; component extraction is preferred",
+    "jumping used extraction method stable-slots; component extraction is preferred",
+    "failed used extraction method stable-slots; component extraction is preferred",
+    "waiting used extraction method stable-slots; component extraction is preferred",
+    "running used extraction method stable-slots; component extraction is preferred",
+    "review used extraction method stable-slots; component extraction is preferred"
+  ],
+  "rows": [
+    {
+      "state": "idle",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "idle used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\idle\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10803,
+          "bbox": [
+            6,
+            56,
+            185,
+            151
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 124
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\idle\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10708,
+          "bbox": [
+            7,
+            57,
+            184,
+            151
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 112
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\idle\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10619,
+          "bbox": [
+            7,
+            56,
+            185,
+            151
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 130
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\idle\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10588,
+          "bbox": [
+            7,
+            56,
+            185,
+            151
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 130
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\idle\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10590,
+          "bbox": [
+            7,
+            56,
+            184,
+            151
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 128
+        },
+        {
+          "index": 5,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\idle\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10830,
+          "bbox": [
+            5,
+            57,
+            187,
+            151
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 122
+        }
+      ]
+    },
+    {
+      "state": "running-right",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "running-right used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8008,
+          "bbox": [
+            12,
+            63,
+            180,
+            141
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 99
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7798,
+          "bbox": [
+            15,
+            63,
+            177,
+            142
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 90
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7627,
+          "bbox": [
+            12,
+            69,
+            179,
+            141
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 98
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7251,
+          "bbox": [
+            15,
+            67,
+            177,
+            142
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 98
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7228,
+          "bbox": [
+            14,
+            69,
+            177,
+            142
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 98
+        },
+        {
+          "index": 5,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7506,
+          "bbox": [
+            5,
+            71,
+            187,
+            144
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 107
+        },
+        {
+          "index": 6,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 6747,
+          "bbox": [
+            21,
+            72,
+            170,
+            143
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 90
+        },
+        {
+          "index": 7,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-right\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7326,
+          "bbox": [
+            18,
+            69,
+            174,
+            144
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 96
+        }
+      ]
+    },
+    {
+      "state": "running-left",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "running-left used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8403,
+          "bbox": [
+            12,
+            61,
+            177,
+            142
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 90
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8228,
+          "bbox": [
+            16,
+            61,
+            176,
+            144
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 87
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8312,
+          "bbox": [
+            9,
+            67,
+            182,
+            142
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 107
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7889,
+          "bbox": [
+            12,
+            65,
+            180,
+            144
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 125
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8013,
+          "bbox": [
+            9,
+            68,
+            182,
+            144
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 104
+        },
+        {
+          "index": 5,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7548,
+          "bbox": [
+            8,
+            70,
+            184,
+            146
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 94
+        },
+        {
+          "index": 6,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8703,
+          "bbox": [
+            5,
+            70,
+            187,
+            145
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 162
+        },
+        {
+          "index": 7,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running-left\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8214,
+          "bbox": [
+            15,
+            67,
+            180,
+            145
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 132
+        }
+      ]
+    },
+    {
+      "state": "waving",
+      "expected_frames": 4,
+      "actual_frames": 4,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "waving used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waving\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11829,
+          "bbox": [
+            5,
+            48,
+            187,
+            160
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 68
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waving\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11265,
+          "bbox": [
+            6,
+            47,
+            186,
+            160
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 66
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waving\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11600,
+          "bbox": [
+            5,
+            48,
+            187,
+            160
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 74
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waving\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11643,
+          "bbox": [
+            6,
+            49,
+            186,
+            160
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 77
+        }
+      ]
+    },
+    {
+      "state": "jumping",
+      "expected_frames": 5,
+      "actual_frames": 5,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "jumping used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\jumping\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7996,
+          "bbox": [
+            5,
+            95,
+            187,
+            174
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 58
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\jumping\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8298,
+          "bbox": [
+            15,
+            53,
+            176,
+            178
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 74
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\jumping\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 8282,
+          "bbox": [
+            16,
+            30,
+            176,
+            161
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 60
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\jumping\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7859,
+          "bbox": [
+            18,
+            76,
+            174,
+            175
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 48
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\jumping\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 7172,
+          "bbox": [
+            14,
+            108,
+            178,
+            178
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 55
+        }
+      ]
+    },
+    {
+      "state": "failed",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "failed used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 15032,
+          "bbox": [
+            5,
+            31,
+            187,
+            170
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 272
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14036,
+          "bbox": [
+            9,
+            47,
+            182,
+            170
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 267
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 12591,
+          "bbox": [
+            12,
+            64,
+            180,
+            170
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 223
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11393,
+          "bbox": [
+            9,
+            80,
+            182,
+            170
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 168
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10805,
+          "bbox": [
+            10,
+            93,
+            182,
+            174
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 149
+        },
+        {
+          "index": 5,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10422,
+          "bbox": [
+            12,
+            96,
+            180,
+            177
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 155
+        },
+        {
+          "index": 6,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11708,
+          "bbox": [
+            10,
+            76,
+            182,
+            172
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 229
+        },
+        {
+          "index": 7,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\failed\\07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14943,
+          "bbox": [
+            6,
+            31,
+            186,
+            170
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 266
+        }
+      ]
+    },
+    {
+      "state": "waiting",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "waiting used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waiting\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14515,
+          "bbox": [
+            5,
+            30,
+            187,
+            181
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 101
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waiting\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 15205,
+          "bbox": [
+            11,
+            26,
+            181,
+            182
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 91
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waiting\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14070,
+          "bbox": [
+            15,
+            25,
+            177,
+            182
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 106
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waiting\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14929,
+          "bbox": [
+            6,
+            26,
+            186,
+            182
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 94
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waiting\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 12974,
+          "bbox": [
+            19,
+            32,
+            172,
+            182
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 111
+        },
+        {
+          "index": 5,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\waiting\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14404,
+          "bbox": [
+            9,
+            34,
+            183,
+            182
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 100
+        }
+      ]
+    },
+    {
+      "state": "running",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "running used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10815,
+          "bbox": [
+            5,
+            58,
+            187,
+            154
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 121
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10303,
+          "bbox": [
+            6,
+            66,
+            185,
+            154
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 116
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10570,
+          "bbox": [
+            8,
+            59,
+            184,
+            154
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 115
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10627,
+          "bbox": [
+            5,
+            58,
+            186,
+            154
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 116
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10566,
+          "bbox": [
+            8,
+            54,
+            184,
+            154
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 102
+        },
+        {
+          "index": 5,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\running\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10400,
+          "bbox": [
+            5,
+            61,
+            187,
+            154
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 127
+        }
+      ]
+    },
+    {
+      "state": "review",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "stable-slots",
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "review used extraction method stable-slots; component extraction is preferred"
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\review\\00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 12167,
+          "bbox": [
+            5,
+            58,
+            187,
+            161
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 114
+        },
+        {
+          "index": 1,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\review\\01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10209,
+          "bbox": [
+            33,
+            45,
+            159,
+            166
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 95
+        },
+        {
+          "index": 2,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\review\\02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11203,
+          "bbox": [
+            9,
+            68,
+            183,
+            164
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 93
+        },
+        {
+          "index": 3,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\review\\03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 12320,
+          "bbox": [
+            24,
+            38,
+            167,
+            168
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 119
+        },
+        {
+          "index": 4,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\review\\04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10372,
+          "bbox": [
+            29,
+            57,
+            163,
+            170
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 96
+        },
+        {
+          "index": 5,
+          "file": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run\\frames\\review\\05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10591,
+          "bbox": [
+            12,
+            70,
+            179,
+            164
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 102
+        }
+      ]
+    }
+  ]
+}

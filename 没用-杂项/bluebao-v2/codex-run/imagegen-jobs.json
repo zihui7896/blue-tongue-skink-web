@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-08-21T01:56:43.674627+00:00",
+  "run_dir": "D:\\1zihui\\code\\AI-learning-notes\\code\\sunli-web\\pet-work\\bluebao-v2\\codex-run",
+  "primary_generation_skill": "$imagegen",
+  "jobs": [
+    {
+      "id": "base",
+      "kind": "base-pet",
+      "status": "complete",
+      "prompt_file": "prompts/base-pet.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        }
+      ],
+      "output_path": "decoded/base.png",
+      "depends_on": [],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02209-8906-7050-810c-59f5489d7058\\exec-e5a5eee5-45c6-4386-9720-cac2b78811c9.png",
+      "completed_at": "2026-08-21T02:20:00+00:00",
+      "qa_note": "Canonical full-body blue-tongued skink mascot approved; cyan removal background, no text, props, clothing, or detached effects."
+    },
+    {
+      "id": "idle",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/idle.md",
+      "retry_prompt_file": "prompts/row-retries/idle.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/idle.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/idle.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-7a63-7d42-a603-0d6a01002def\\exec-af2a0d28-0094-4c58-ad95-aa709ed8c517.png",
+      "completed_at": "2026-08-21T02:45:00+00:00",
+      "qa_note": "Six separated, uncropped idle frames; stable markings with blink and gentle breathing motion.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "no deterministic derivation is configured for this state"
+      },
+      "mirror_policy": {}
+    },
+    {
+      "id": "running-right",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/running-right.md",
+      "retry_prompt_file": "prompts/row-retries/running-right.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/running-right.png",
+          "role": "layout guide for 8 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/running-right.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-aed8-7aa3-a035-8e7486e550c8\\exec-896a23b8-f256-4c33-8ddb-f929029dacec.png",
+      "completed_at": "2026-08-21T02:45:00+00:00",
+      "qa_note": "Eight clean right-facing gait frames with alternating feet and consistent identity.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "no deterministic derivation is configured for this state"
+      },
+      "mirror_policy": {}
+    },
+    {
+      "id": "running-left",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/running-left.md",
+      "retry_prompt_file": "prompts/row-retries/running-left.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/running-left.png",
+          "role": "layout guide for 8 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/running-right.png",
+          "role": "rightward gait reference for leftward row decision"
+        }
+      ],
+      "output_path": "decoded/running-left.png",
+      "depends_on": [
+        "base",
+        "running-right"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base",
+        "running-right"
+      ],
+      "derivation_policy": {
+        "may_derive": true,
+        "may_derive_from": "running-right",
+        "derivation": "framewise-horizontal-mirror-preserving-order",
+        "requires_explicit_approval": true,
+        "fallback_generation_skill": "$imagegen"
+      },
+      "mirror_policy": {
+        "may_derive": true,
+        "may_derive_from": "running-right",
+        "derivation": "framewise-horizontal-mirror-preserving-order",
+        "requires_explicit_approval": true,
+        "fallback_generation_skill": "$imagegen"
+      },
+      "source_path": "decoded\\running-right.png",
+      "derived_from": "running-right",
+      "completed_at": "2026-08-21T02:37:26.459153+00:00",
+      "metadata": {
+        "width": 2172,
+        "height": 724,
+        "mode": "RGBA",
+        "format": "PNG"
+      },
+      "mirror_decision": {
+        "approved": true,
+        "approved_at": "2026-08-21T02:37:26.459153+00:00",
+        "note": "BlueBao has no asymmetric props, text, or one-sided accessories; framewise mirroring safely preserves identity and gait order.",
+        "transform": "framewise-horizontal-mirror-preserving-order"
+      }
+    },
+    {
+      "id": "waving",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/waving.md",
+      "retry_prompt_file": "prompts/row-retries/waving.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/waving.png",
+          "role": "layout guide for 4 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/waving.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-7a63-7d42-a603-0d6a01002def\\exec-f93578a1-b85f-4e42-b57b-7a2deedd0349.png",
+      "completed_at": "2026-08-21T02:56:00+00:00",
+      "qa_note": "Four clean greeting frames with a reptile foreleg wave; no detached effects or guide marks.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "state requires its own generated animation semantics"
+      },
+      "mirror_policy": {}
+    },
+    {
+      "id": "jumping",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/jumping.md",
+      "retry_prompt_file": "prompts/row-retries/jumping.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/jumping.png",
+          "role": "layout guide for 5 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/jumping.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-aed8-7aa3-a035-8e7486e550c8\\exec-d0e34c40-195d-4787-aafb-d3ad5e2613d4.png",
+      "completed_at": "2026-08-21T02:56:00+00:00",
+      "qa_note": "Five complete anticipation, rise, apex, fall, and landing poses with stable identity.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "state requires its own generated animation semantics"
+      },
+      "mirror_policy": {}
+    },
+    {
+      "id": "failed",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/failed.md",
+      "retry_prompt_file": "prompts/row-retries/failed.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/failed.png",
+          "role": "layout guide for 8 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/failed.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-7a63-7d42-a603-0d6a01002def\\exec-aeedc393-4ceb-4288-87f0-0ae760aae1eb.png",
+      "completed_at": "2026-08-21T03:05:00+00:00",
+      "qa_note": "Eight clean low-head, settle, sleep, and recover poses; no symbols, tears, or detached effects.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "state requires its own generated animation semantics"
+      },
+      "mirror_policy": {}
+    },
+    {
+      "id": "waiting",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/waiting.md",
+      "retry_prompt_file": "prompts/row-retries/waiting.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/waiting.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/waiting.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-aed8-7aa3-a035-8e7486e550c8\\exec-5389f1c1-f4a2-40ec-bc53-d105d4a66c7a.png",
+      "completed_at": "2026-08-21T03:08:00+00:00",
+      "qa_note": "Six clean attentive waiting poses using lifted head, eye direction, and natural foreleg movement.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "state requires its own generated animation semantics"
+      },
+      "mirror_policy": {}
+    },
+    {
+      "id": "running",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/running.md",
+      "retry_prompt_file": "prompts/row-retries/running.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/running.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/running.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-7a63-7d42-a603-0d6a01002def\\exec-194c8851-2da6-4954-b97d-28b5de597e07.png",
+      "completed_at": "2026-08-21T03:15:00+00:00",
+      "qa_note": "Six grounded Work poses using focused head movement and tongue scanning; no running or props.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "state requires its own generated animation semantics"
+      },
+      "mirror_policy": {}
+    },
+    {
+      "id": "review",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/review.md",
+      "retry_prompt_file": "prompts/row-retries/review.md",
+      "input_images": [
+        {
+          "path": "references\\reference-01.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references\\reference-02.jpg",
+          "role": "pet reference"
+        },
+        {
+          "path": "references/layout-guides/review.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        }
+      ],
+      "output_path": "decoded/review.png",
+      "source_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a02222-aed8-7aa3-a035-8e7486e550c8\\exec-a90272b9-80fd-4f1d-9362-8df55d5de2e5.png",
+      "completed_at": "2026-08-21T03:15:00+00:00",
+      "qa_note": "Six complete observational idle poses with blink, lean, head tilt, and natural foreleg movement.",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "derivation_policy": {
+        "may_derive": false,
+        "reason": "state requires its own generated animation semantics"
+      },
+      "mirror_policy": {}
+    }
+  ]
+}
