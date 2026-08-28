@@ -26,15 +26,20 @@ export class PetalBloomEffect{
   draw(time){
     const ctx=this.ctx,w=this.width,h=this.height;if(!ctx||!w||!h)return;ctx.clearRect(0,0,w,h);
     const elapsed=(time-this.startedAt)*this.speed,progress=clamp(elapsed/this.duration),afterBloom=clamp((elapsed-this.duration)/2200),breath=Math.sin(elapsed*.00125)*afterBloom;
-    this.drawBackdrop(ctx,w,h,progress);this.drawParticles(ctx,w,h,time,progress,false);if(this.petalImage.complete&&this.petalImage.naturalWidth)this.drawPetals(ctx,w,h,progress,breath);if(this.flowerImage.complete&&this.flowerImage.naturalWidth)this.drawFinalFlower(ctx,w,h,progress,breath);this.drawParticles(ctx,w,h,time,progress,true);
+    this.drawBackdrop(ctx,w,h,progress);this.drawParticles(ctx,w,h,time,progress,false);if(this.flowerImage.complete&&this.flowerImage.naturalWidth)this.drawCore(ctx,w,h,progress);if(this.petalImage.complete&&this.petalImage.naturalWidth)this.drawPetals(ctx,w,h,progress,breath);if(this.flowerImage.complete&&this.flowerImage.naturalWidth)this.drawFinalFlower(ctx,w,h,progress,breath);this.drawParticles(ctx,w,h,time,progress,true);
   }
   drawBackdrop(ctx,w,h,progress){const {center,palette}=this.config,glow=ctx.createRadialGradient(w*center.x,h*center.y,0,w*center.x,h*center.y,Math.max(w,h)*.62);glow.addColorStop(0,`${palette.glow}${.1+.13*progress})`);glow.addColorStop(.38,palette.mid);glow.addColorStop(1,"rgba(0,0,0,0)");ctx.fillStyle=glow;ctx.fillRect(0,0,w,h)}
+  drawCore(ctx,w,h,progress){
+    const reveal=easeOut((progress-.06)/.22),fade=1-easeInOut((progress-.72)/.18);if(reveal<=0||fade<=0)return;const finalSize=Math.min(w*this.config.finalSize.x,h*this.config.finalSize.y),size=finalSize*mix(.16,.31,easeOut(progress/.72)),cx=w*this.config.center.x,cy=h*this.config.center.y;
+    ctx.save();ctx.translate(cx,cy);ctx.beginPath();ctx.arc(0,0,size*.32,0,Math.PI*2);ctx.clip();ctx.globalAlpha=.8*reveal*fade;ctx.filter=`saturate(1.04) brightness(1.05) drop-shadow(0 8px 16px ${this.config.palette.shadow})`;ctx.drawImage(this.flowerImage,-size/2,-size*.4,size,size);ctx.restore();
+  }
   drawPetals(ctx,w,h,progress,breath){
     const base=Math.min(w,h),cx=w*this.config.center.x,cy=h*this.config.center.y,layerCount=this.config.layers.length,spriteFade=1-easeInOut((progress-.78)/.2);
     for(const petal of this.petals){
-      const layer=this.config.layers[petal.layerIndex],local=easeInOut((progress-petal.delay)/(1-petal.delay)),angle=petal.index/petal.count*Math.PI*2+layer.phase,open=easeOut(local),radial=base*petal.radius*open;
-      const width=base*petal.width*mix(.44,1,open),height=base*petal.height*mix(.28,1,open),twist=petal.twist*(1-open),layerDepth=1-petal.layerIndex/Math.max(1,layerCount-1);
-      ctx.save();ctx.translate(cx,cy);ctx.rotate(angle+twist+petal.tilt*open);ctx.translate(0,-radial);ctx.scale(1+breath*.008*layerDepth,1+breath*.012*layerDepth);ctx.globalAlpha=petal.alpha*mix(.72,1,open)*spriteFade;ctx.filter=`hue-rotate(${petal.hue}deg) saturate(${mix(.86,1.06,open)}) brightness(${mix(.88,1.04,open)}) drop-shadow(0 10px 12px ${this.config.palette.shadow})`;ctx.drawImage(this.petalImage,-width/2,-height,width,height);ctx.restore();
+      const layer=this.config.layers[petal.layerIndex],local=easeInOut((progress-petal.delay)/(1-petal.delay)),targetAngle=petal.index/petal.count*Math.PI*2+layer.phase,open=easeOut(local),radial=base*petal.radius*open*.12;
+      const budAngle=(petal.index/(petal.count-1)-.5)*.36+(petal.layerIndex-1)*.025,shortestTurn=((targetAngle-budAngle+Math.PI*3)%(Math.PI*2))-Math.PI,currentAngle=budAngle+shortestTurn*open+petal.twist*(1-open)*.22;
+      const width=base*petal.width*mix(.34,1,open),height=base*petal.height*mix(.58,1,open),layerDepth=1-petal.layerIndex/Math.max(1,layerCount-1);
+      ctx.save();ctx.translate(cx,cy);ctx.rotate(currentAngle+petal.tilt*open);ctx.translate(0,-radial);ctx.scale(1+breath*.008*layerDepth,1+breath*.012*layerDepth);ctx.globalAlpha=petal.alpha*mix(.76,1,open)*spriteFade;ctx.filter=`hue-rotate(${petal.hue}deg) saturate(${mix(.86,1.06,open)}) brightness(${mix(.9,1.04,open)}) drop-shadow(0 10px 12px ${this.config.palette.shadow})`;ctx.drawImage(this.petalImage,-width/2,-height,width,height);ctx.restore();
     }
   }
   drawFinalFlower(ctx,w,h,progress,breath){

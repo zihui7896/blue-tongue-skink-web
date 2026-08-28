@@ -1,2 +1,2 @@
-import{initSidebar}from"./components/sidebar.js";import{initPetPlayground}from"./features/pet-playground.js";import{initEffectsGallery}from"./features/effects-gallery.js";
-initPetPlayground();const effects=initEffectsGallery();initSidebar({onViewChange:name=>effects.setVisible(name==="effects")});
+import{initSidebar}from"./components/sidebar.js";import{initPetPlayground}from"./features/pet-playground.js";import{initEffectsGallery}from"./features/effects-gallery.js";import{CAT_STATES}from"./data/pet-states.js?v=cat-states-1";
+initPetPlayground();initPetPlayground({rootSelector:'[data-pet-playground="cat"]',states:CAT_STATES,petName:"橘团",dialogText:"喵呜",spritePath:"ju-tuan-cat/spritesheet.webp"});const effects=initEffectsGallery();initSidebar({onViewChange:name=>effects.setVisible(name==="effects")});
