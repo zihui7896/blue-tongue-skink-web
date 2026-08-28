@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef4ff">
+  <meta name="description" content="蓝豆桌宠互动与代码特效工作台。">
+  <title>蓝豆桌宠 · LanDou Creative Lab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🦎%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components/sidebar.css">
+  <link rel="stylesheet" href="styles/components/pet-playground.css">
+  <link rel="stylesheet" href="styles/components/effects-gallery.css">
+</head>
+<body>
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <a class="brand-home" href="index.html" aria-label="返回欢迎首页">
+          <span class="brand-copy"><strong>蓝豆</strong><span>Creative Lab</span></span>
+        </a>
+        <button class="icon-button sidebar-collapse" id="sidebar-collapse" type="button" aria-label="隐藏侧边栏" aria-expanded="true"><span aria-hidden="true">‹</span></button>
+      </div>
+      <nav class="sidebar-nav" aria-label="主导航">
+        <p class="nav-label">工作台</p>
+        <button class="nav-item active" type="button" data-view="pet" aria-current="page"><span class="nav-mark" aria-hidden="true">01</span><span class="nav-copy"><strong>蓝豆桌宠</strong><small>动作与互动</small></span></button>
+        <button class="nav-item" type="button" data-view="effects"><span class="nav-mark" aria-hidden="true">02</span><span class="nav-copy"><strong>代码特效</strong><small>实时生成动画</small></span></button>
+      </nav>
+      <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span><span class="sidebar-footer-copy"><strong>本地运行</strong><small>无需联网与构建</small></span></div>
+    </aside>
+    <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+    <main class="workspace">
+      <button class="sidebar-reveal" id="sidebar-reveal" type="button" aria-label="显示侧边栏" hidden><span aria-hidden="true">☰</span><span>菜单</span></button>
+      <section class="view active" id="view-pet" data-view-panel="pet">
+        <header class="page-header"><div><span class="eyebrow">ANIMATED DESKTOP BUDDY</span><h1>蓝豆 <em>LanDou</em></h1><p>一只会用钴蓝舌头表达心情的卡通蓝舌石龙子</p></div><span class="mode" id="mode-indicator">手动动作模式</span></header>
+        <section class="stage-card">
+          <div class="card-bar"><span>桌宠活动区</span><span id="status">发呆 · 放松微笑</span></div>
+          <div class="stage" id="stage">
+            <button id="pet" title="拖动我；双击看看反应；右击打开菜单" aria-label="可拖动的蓝豆桌宠"></button>
+            <span class="tip">拖动蓝豆调整位置 · 双击或右击与它互动</span><div class="pet-dialog" id="pet-dialog" role="status" hidden>阿巴阿巴</div>
+            <div class="pet-menu" id="pet-menu" role="menu" aria-label="蓝豆互动菜单" hidden><div class="pet-menu-title">蓝豆想做什么？</div><button type="button" role="menuitem" data-command="roam">慢慢巡游</button><button type="button" role="menuitem" data-command="rest">停下休息</button><div class="pet-menu-separator"></div><button type="button" role="menuitem" data-command="wave">向你挥爪</button><button type="button" role="menuitem" data-command="home">回到初始位置</button></div>
+          </div>
+        </section>
+        <section class="actions-panel" aria-label="动作控制台">
+          <div class="section-head"><span><small>动作库</small><strong>9 个动画组 · 57 个细分姿势</strong></span><small>切换动作后保持暂停，由你决定何时播放</small></div><div class="action-grid" id="actions"></div>
+          <div class="player" aria-label="播放控制"><button id="previous" type="button">← 上一帧</button><button id="play" type="button">暂停动画</button><button id="next" type="button">下一帧 →</button><output id="counter">第 1 / 6 帧</output></div>
+          <div class="pose-panel"><div class="pose-head"><div><strong id="pose-title">发呆的细分动作</strong><small id="pose-summary"></small></div><button id="play-group" type="button">播放整组</button></div><div class="pose-grid" id="poses"></div></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-effects" data-view-panel="effects" hidden>
+        <header class="page-header effects-header"><div><span class="eyebrow">CODE EFFECTS COLLECTION</span><h1>代码特效</h1><p>每一张卡片都是浏览器实时绘制的动态场景。</p></div><span class="collection-count">01 个特效</span></header>
+        <section class="effects-intro"><div><span>本期主题</span><strong>花与微光</strong></div><p>第一朵 3D 花会在约 8 秒内舒展花瓣，并在深色背景里缓慢呼吸。点击“重新盛开”可以随时重播。</p></section>
+        <div class="effects-grid" aria-label="代码特效网格">
+          <article class="effect-card" data-effect="blooming-flower">
+            <div class="effect-stage"><canvas id="blooming-flower" aria-label="一朵半透明粉色 3D 花朵正在缓慢盛开"></canvas><pre class="effect-code" aria-hidden="true"><code>class Bloom {
+  petals.open(progress)
+  light.scatter(softPink)
+  particles.drift(depth)
+}</code></pre><div class="effect-badge"><span></span> 3D 花体 · Canvas 动效</div><button class="effect-replay" type="button" data-replay-effect="blooming-flower">重新盛开</button></div>
+            <div class="effect-meta"><div><span class="effect-index">EFFECT 001</span><h3>绽放 · Bloom</h3><p>3D 透光花体、景深花瓣与代码控制的展开共同组成一场缓慢盛开。</p></div><label class="speed-control">播放速度<select id="bloom-speed" aria-label="花朵盛开速度"><option value="0.65">舒缓</option><option value="1" selected>自然</option><option value="1.45">轻快</option></select></label></div>
+          </article>
+        </div>
+      </section>
+      <footer class="site-footer"><a href="index.html">返回欢迎首页</a><span>纯静态模块化应用</span></footer>
+    </main>
+  </div>
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
