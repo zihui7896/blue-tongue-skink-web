@@ -7,12 +7,14 @@
 - `index.html`：独立欢迎首页，可选择进入桌宠或代码特效。
 - `workspace.html#playground`：蓝豆桌宠工作台。
 - `workspace.html#cat`：橘团桌宠工作台，是侧边栏中的独立栏目。
+- `workspace.html#otter`：小獭桌宠工作台，使用 SVG 与 CSS 绘制和动画。
 - `workspace.html#effects`：代码特效画廊。
 - 工作台内的视图切换会写入浏览器历史，可使用前进、后退返回上一视图。
 
 ## 功能
 
-- 蓝豆和橘团两个独立桌宠栏目，每只都有 9 个动画组、57 个可单独选择的细分姿势。
+- 蓝豆和橘团两个精灵图桌宠栏目，每只都有 9 个动画组、57 个可单独选择的细分姿势。
+- 小獭是独立的 SVG 桌宠，支持打招呼、送小鱼、午睡、拖动与方向键移动。
 - 纯手动动作模式，不会随机切换动作。
 - 支持播放、暂停、上一帧、下一帧和播放整组。
 - 支持拖动桌宠，双击蓝豆可切换到挥爪动作。
@@ -43,3 +45,13 @@
 网页运行时使用根目录中的 `spritesheet.webp`，尺寸为 1536×1872，包含透明通道。
 
 橘团网页运行时使用 `ju-tuan-cat/spritesheet.webp`；可编辑源动作条、透明拆分帧、GIF 预览、接触表和校验结果保存在 `ju-tuan-cat/work/`。同一套桌宠包也安装在 Codex 的 `pets/ju-tuan-cat/` 目录中。
+
+小獭不依赖外部图片，角色造型直接写在 `workspace.html` 的内联 SVG 中，互动状态与动画分别位于 `scripts/features/otter-pet.js` 和 `styles/components/otter-pet.css`。
+
+## 测试
+
+项目使用 Node 内置测试运行器，无需安装依赖：
+
+```bash
+npm test
+```
