@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f4">
+  <meta name="description" content="今天的开心已经送到：一份可以拆开、可以互动，也不会催你振作的小礼物。">
+  <title>今天的开心，请签收</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E💐%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="gift-closed">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="回到顶部"><span>✦</span> 一份只给你的好心情</a>
+    <button class="name-trigger" type="button" data-name-trigger aria-controls="name-panel" aria-expanded="false">写上她的名字</button>
+  </header>
+
+  <aside class="name-panel" id="name-panel" hidden>
+    <form class="name-form" data-name-form>
+      <label for="recipient-name">这份心意，想送给谁？</label>
+      <div>
+        <input id="recipient-name" name="recipient" type="text" maxlength="12" autocomplete="off" placeholder="她的名字">
+        <button type="submit">写进礼物里</button>
+      </div>
+      <p>名字会留在页面地址里，方便你把这份礼物分享给她。</p>
+    </form>
+  </aside>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="glow glow-one" aria-hidden="true"></div>
+      <div class="glow glow-two" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="recipient-chip">SPECIAL DELIVERY · TO <span data-recipient>你</span></p>
+          <h1 id="hero-title">嘿，今天的开心<br><em>已经送到啦。</em></h1>
+          <p class="hero-intro">不用急着变开心，也不用想好该说什么。<br>有只小家伙替我带来了一点偏心，想请你亲手拆开。</p>
+          <button class="open-gift" type="button" data-open-gift><span>轻轻拆开这份礼物</span><i aria-hidden="true">✦</i></button>
+          <p class="tiny-note">不用回复，看到就好。</p>
+        </div>
+
+        <div class="gift-stage" data-gift-stage aria-label="蓝舌石龙子抱着一大束鲜花，正在送来一封信">
+          <span class="sparkle sparkle-one" aria-hidden="true">✦</span>
+          <span class="sparkle sparkle-two" aria-hidden="true">✦</span>
+          <span class="sparkle sparkle-three" aria-hidden="true">•</span>
+          <div class="blob" aria-hidden="true"></div>
+          <img class="gift-character" src="assets/bouquet-skink.png" alt="一只可爱的蓝舌石龙子抱着花束和信封">
+          <div class="envelope" aria-hidden="true">
+            <div class="envelope-back"></div>
+            <div class="letter-card"><small>TO</small><strong data-recipient>你</strong><span>今天也要被好好喜欢</span></div>
+            <div class="envelope-front"></div>
+            <div class="wax-seal">♥</div>
+          </div>
+          <p class="delivery-tag"><span>01</span> 你的专属开心派送员</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="gift-content" data-gift-content hidden>
+      <section class="love-note" aria-labelledby="love-note-title">
+        <div class="note-pin" aria-hidden="true">♡</div>
+        <p class="section-kicker">拆开以后，第一句话</p>
+        <h2 id="love-note-title">今天的<span data-recipient>你</span>，<br>也值得被好好接住。</h2>
+        <p>我不是来催你开心的。只是想让你知道：不管今天顺不顺利，你都依然值得被认真喜欢。累了就歇一会儿，我在。</p>
+        <span class="signature">不用回复，看到就好。</span>
+      </section>
+
+      <section class="mood-section" aria-labelledby="mood-question">
+        <div class="section-heading">
+          <p class="section-kicker">现在，把选择权交给你</p>
+          <h2 id="mood-question">今天想被怎样哄一下？</h2>
+          <p>没有标准答案，选此刻最想要的就好。</p>
+        </div>
+
+        <div class="mood-cards">
+          <button class="mood-card mood-praise" type="button" data-mood="praise" data-mood-card aria-pressed="false"><span class="mood-doodle" aria-hidden="true"><i>✦</i><i>✧</i></span><small>01</small><strong>夸夸我</strong><em>认真看见我的好</em></button>
+          <button class="mood-card mood-company" type="button" data-mood="company" data-mood-card aria-pressed="false"><span class="mood-doodle" aria-hidden="true"><i>☕</i></span><small>02</small><strong>陪陪我</strong><em>先听我慢慢说</em></button>
+          <button class="mood-card mood-quiet" type="button" data-mood="quiet" data-mood-card aria-pressed="false"><span class="mood-doodle" aria-hidden="true"><i>☾</i><i>·</i></span><small>03</small><strong>让我静静</strong><em>暂时不用做什么</em></button>
+          <button class="mood-card mood-sweet" type="button" data-mood="sweet" data-mood-card aria-pressed="false"><span class="mood-doodle" aria-hidden="true"><i>●</i><i>✦</i></span><small>04</small><strong>给点甜甜</strong><em>收一份小惊喜</em></button>
+        </div>
+
+        <div class="response-card" data-response-card aria-live="polite">
+          <div class="response-mark" aria-hidden="true">“</div>
+          <p class="response-kicker">先选一种你想要的陪伴</p>
+          <h3 data-response-title>这里没有标准答案</h3>
+          <p data-response-message>你的感受不需要被修好。点一张上面的小卡片，我会把合适的话认真说给你听。</p>
+          <div class="response-footer"><p data-response-action>今天，我们先站在你这一边。</p><button type="button" data-next-message hidden>再听一句 <span aria-hidden="true">→</span></button></div>
+        </div>
+      </section>
+
+      <section class="joy-section" aria-labelledby="joy-title">
+        <div class="section-heading compact"><p class="section-kicker">HAPPINESS SUPPLY</p><h2 id="joy-title">再补充一点点开心。</h2><p>这些小事没有任务感，玩一下就好。</p></div>
+        <div class="joy-grid">
+          <article class="joy-card bloom-card" data-bloom-card data-stage="0">
+            <div class="bloom-scene" aria-hidden="true"><span class="bloom-stem"></span><span class="bloom-leaf leaf-left"></span><span class="bloom-leaf leaf-right"></span><div class="bloom-flower"><i></i><i></i><i></i><i></i><i></i><b></b></div><span class="bloom-spark">✦</span></div>
+            <div class="joy-copy"><small>慢慢来，也很好</small><h3>为自己养一朵花</h3><p data-bloom-label>花苞在等你</p><button type="button" data-grow-flower>轻轻点一下 <span aria-hidden="true">→</span></button></div>
+          </article>
+          <article class="joy-card candy-card">
+            <div class="candy-visual" aria-hidden="true"><span></span><b>♡</b><span></span></div>
+            <div class="joy-copy"><small>一颗没有热量的糖</small><h3>拆开一句甜甜</h3><p data-candy-message aria-live="polite">里面藏着一句只说给你听的话。</p><button type="button" data-candy-button>现在拆开 <span aria-hidden="true">✦</span></button></div>
+          </article>
+          <article class="joy-card reminder-card"><span class="reminder-heart" aria-hidden="true">♥</span><small>今日份郑重提醒</small><h3>你不用一直懂事，<br>也可以被好好照顾。</h3><p>消息可以晚点回，计划可以往后放。先把自己放回今天最重要的位置。</p></article>
+        </div>
+      </section>
+
+      <section class="giver-note" aria-labelledby="giver-title">
+        <div><p class="section-kicker">给准备这份心意的人</p><h2 id="giver-title">让她开心之前，<br>先让她感到被在乎。</h2><p class="giver-intro">可靠的关系研究反复指向同一件事：真正有效的关心，不是猜女生都喜欢什么，而是理解、回应和尊重她此刻的需要。</p></div>
+        <ol class="care-list">
+          <li><span>01</span><div><strong>先问，再行动</strong><p>“想让我听你说，还是一起想办法？”</p></div></li>
+          <li><span>02</span><div><strong>把夸奖说具体</strong><p>记住她的小习惯，也说出你欣赏的品质。</p></div></li>
+          <li><span>03</span><div><strong>小事及时回应</strong><p>她分享的梗、天气和叹气，都是一次靠近。</p></div></li>
+          <li><span>04</span><div><strong>尊重她的节奏</strong><p>想拥抱先确认，想安静也不追问。</p></div></li>
+        </ol>
+        <details class="research-sources"><summary>查看这些建议的研究来源</summary><ul>
+          <li><a href="https://www.apa.org/topics/healthy-relationships" target="_blank" rel="noopener noreferrer">American Psychological Association · Healthy relationships</a></li>
+          <li><a href="https://www.gottman.com/blog/how-to-stress-reducing-conversation/" target="_blank" rel="noopener noreferrer">The Gottman Institute · Stress-reducing conversation</a></li>
+          <li><a href="https://greatergood.berkeley.edu/article/item/how_to_say_thank_you_to_your_partner" target="_blank" rel="noopener noreferrer">Greater Good · How to say “thank you”</a></li>
+          <li><a href="https://www.loveisrespect.org/resources/boundaries-expectations/" target="_blank" rel="noopener noreferrer">Love is Respect · Boundaries &amp; expectations</a></li>
+        </ul></details>
+      </section>
+
+      <footer class="site-footer"><p>愿你被喜欢，<br>不只因为你开心的样子。</p><div><span>今天的你，已经很好了。</span><a href="../index.html">返回蓝豆 Creative Lab</a></div></footer>
+    </div>
+  </main>
+  <script type="module" src="scripts/happy-space.js"></script>
+</body>
+</html>
