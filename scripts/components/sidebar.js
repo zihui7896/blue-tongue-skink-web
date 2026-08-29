@@ -1,10 +1,14 @@
-const VIEW_TITLES={pet:"蓝豆桌宠 · LanDou Creative Lab",cat:"橘团桌宠 · LanDou Creative Lab",effects:"代码特效 · LanDou Creative Lab"};
+const VIEW_TITLES={pet:"蓝豆桌宠 · LanDou Creative Lab",cat:"橘团桌宠 · LanDou Creative Lab",otter:"小獭桌宠 · LanDou Creative Lab",effects:"代码特效 · LanDou Creative Lab"};
+const VALID_VIEWS=["pet","cat","otter","effects"];
+const VALID_HASHES=["#playground","#cat","#otter","#effects"];
+
+export const viewFromHash=hash=>hash==="#effects"?"effects":hash==="#otter"?"otter":hash==="#cat"?"cat":"pet";
+export const hashForView=name=>name==="effects"?"#effects":name==="otter"?"#otter":name==="cat"?"#cat":"#playground";
+export const normalizeView=name=>VALID_VIEWS.includes(name)?name:"pet";
 
 export function initSidebar({onViewChange}={}){
   const shell=document.querySelector("#app-shell"),collapse=document.querySelector("#sidebar-collapse"),reveal=document.querySelector("#sidebar-reveal"),scrim=document.querySelector("#sidebar-scrim"),navItems=[...document.querySelectorAll("[data-view]")],panels=[...document.querySelectorAll("[data-view-panel]")];
   const isMobile=()=>window.matchMedia("(max-width: 760px)").matches;
-  const viewFromHash=()=>location.hash==="#effects"?"effects":location.hash==="#cat"?"cat":"pet";
-  const hashForView=name=>name==="effects"?"#effects":name==="cat"?"#cat":"#playground";
 
   function setSidebar(open){
     if(isMobile()){
@@ -37,7 +41,7 @@ export function initSidebar({onViewChange}={}){
   }
 
   function showView(name){
-    const nextName=["pet","cat","effects"].includes(name)?name:"pet";
+    const nextName=normalizeView(name);
     const nextHash=hashForView(nextName);
     if(location.hash!==nextHash)history.pushState(null,"",nextHash);
     renderView(nextName);
@@ -47,7 +51,7 @@ export function initSidebar({onViewChange}={}){
   reveal.addEventListener("click",()=>setSidebar(true));
   scrim.addEventListener("click",()=>setSidebar(false));
   navItems.forEach(item=>item.addEventListener("click",()=>showView(item.dataset.view)));
-  window.addEventListener("hashchange",()=>renderView(viewFromHash()));
+  window.addEventListener("hashchange",()=>renderView(viewFromHash(location.hash)));
   window.addEventListener("resize",()=>{
     if(!isMobile()){
       shell.classList.remove("mobile-sidebar-open");
@@ -57,8 +61,8 @@ export function initSidebar({onViewChange}={}){
     }
   });
 
-  if(!["#effects","#cat","#playground"].includes(location.hash))history.replaceState(null,"","#playground");
-  renderView(viewFromHash(),{scroll:false});
+  if(!VALID_HASHES.includes(location.hash))history.replaceState(null,"","#playground");
+  renderView(viewFromHash(location.hash),{scroll:false});
   if(isMobile())setSidebar(false);
   return{showView,setSidebar};
 }

@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import {
   createOtterState,
   reduceOtterState,
-} from "../scripts/features/otter-pet-state.mjs";
+} from "../scripts/features/otter-pet-state.js";
 
 test("小獭默认安静地抱着贝壳", () => {
   assert.deepEqual(createOtterState(), {

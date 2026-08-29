@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/components/sidebar.css">
   <link rel="stylesheet" href="styles/components/pet-playground.css">
+  <link rel="stylesheet" href="styles/components/otter-pet.css">
   <link rel="stylesheet" href="styles/components/effects-gallery.css">
 </head>
 <body>
@@ -26,7 +27,8 @@
         <p class="nav-label">工作台</p>
         <button class="nav-item active" type="button" data-view="pet" aria-current="page"><span class="nav-mark" aria-hidden="true">01</span><span class="nav-copy"><strong>蓝豆桌宠</strong><small>动作与互动</small></span></button>
         <button class="nav-item" type="button" data-view="cat"><span class="nav-mark" aria-hidden="true">02</span><span class="nav-copy"><strong>橘团桌宠</strong><small>橘白长毛猫</small></span></button>
-        <button class="nav-item" type="button" data-view="effects"><span class="nav-mark" aria-hidden="true">03</span><span class="nav-copy"><strong>代码特效</strong><small>实时生成动画</small></span></button>
+        <button class="nav-item" type="button" data-view="otter"><span class="nav-mark" aria-hidden="true">03</span><span class="nav-copy"><strong>小獭桌宠</strong><small>抱贝壳的水獭</small></span></button>
+        <button class="nav-item" type="button" data-view="effects"><span class="nav-mark" aria-hidden="true">04</span><span class="nav-copy"><strong>代码特效</strong><small>实时生成动画</small></span></button>
       </nav>
       <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span><span class="sidebar-footer-copy"><strong>本地运行</strong><small>无需联网与构建</small></span></div>
     </aside>
@@ -68,6 +70,57 @@
         </section>
       </section>
 
+      <section class="view otter-view" id="view-otter" data-view-panel="otter" data-otter-playground hidden>
+        <header class="page-header">
+          <div><span class="eyebrow">RIVER DESKTOP BUDDY</span><h1>小獭 <em>XiaoTa</em></h1><p>抱着小贝壳、喜欢在浅水里漂来漂去的水獭伙伴。</p></div>
+          <span class="mode" data-otter-mode>轻互动模式</span>
+        </header>
+        <section class="otter-card">
+          <div class="otter-card-bar"><span>小獭活动区</span><span data-otter-status>发呆 · 抱着贝壳</span></div>
+          <div class="otter-stage" data-otter-stage>
+            <span class="otter-sun" aria-hidden="true"></span>
+            <span class="otter-reed otter-reed-left" aria-hidden="true"></span>
+            <span class="otter-reed otter-reed-right" aria-hidden="true"></span>
+            <span class="otter-ripple" aria-hidden="true"></span>
+            <button class="otter-avatar" type="button" data-otter-pet data-mood="idle" aria-label="小獭正在抱着贝壳发呆，点击和它打招呼">
+              <svg class="otter-figure" viewBox="0 0 220 220" aria-hidden="true" focusable="false">
+                <g class="otter-tail"><path d="M67 164C36 170 17 192 28 203c13 13 45-7 62-25z" fill="#8b5e3c" stroke="#5f402f" stroke-width="5" stroke-linejoin="round"/></g>
+                <ellipse cx="111" cy="179" rx="63" ry="23" fill="#458e9b" opacity=".25"/>
+                <g class="otter-body">
+                  <ellipse cx="112" cy="139" rx="57" ry="65" fill="#a9714e" stroke="#5f402f" stroke-width="5"/>
+                  <ellipse cx="112" cy="148" rx="36" ry="43" fill="#f6e7d5" opacity=".95"/>
+                  <circle cx="69" cy="76" r="18" fill="#8b5e3c" stroke="#5f402f" stroke-width="5"/>
+                  <circle cx="155" cy="76" r="18" fill="#8b5e3c" stroke="#5f402f" stroke-width="5"/>
+                  <circle cx="112" cy="84" r="58" fill="#a9714e" stroke="#5f402f" stroke-width="5"/>
+                  <ellipse cx="112" cy="103" rx="34" ry="27" fill="#f6e7d5"/>
+                  <g class="otter-eyes" fill="#243346"><ellipse cx="89" cy="79" rx="6" ry="8"/><ellipse cx="135" cy="79" rx="6" ry="8"/></g>
+                  <path d="M104 96q8-8 16 0-2 10-8 10t-8-10" fill="#243346"/>
+                  <path d="M112 106q-9 10-18 3M112 106q9 10 18 3" fill="none" stroke="#5f402f" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M76 99 52 94M77 106l-26 3M148 99l24-5M147 106l26 3" fill="none" stroke="#5f402f" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+                  <g class="otter-arm otter-arm-left"><path d="M78 127q-25 11-17 35 15 8 29-13" fill="#9a6746" stroke="#5f402f" stroke-width="5" stroke-linecap="round"/></g>
+                  <g class="otter-arm otter-arm-wave"><path d="M146 127q25 11 17 35-15 8-29-13" fill="#9a6746" stroke="#5f402f" stroke-width="5" stroke-linecap="round"/></g>
+                  <g class="otter-shell"><path d="M84 146q28-29 56 0v23H84z" fill="#f3c969" stroke="#8c6a35" stroke-width="4" stroke-linejoin="round"/><path d="m92 148 7 18m8-25 3 25m16-18-7 18m-35 0h56" fill="none" stroke="#c79742" stroke-width="3" stroke-linecap="round"/></g>
+                  <g class="otter-fish"><path d="M111 142q18-16 34 0-16 17-34 0m0 0-13-10v20z" fill="#5fc3d0" stroke="#356b78" stroke-width="3" stroke-linejoin="round"/><circle cx="137" cy="139" r="2" fill="#243346"/></g>
+                  <g class="otter-sleep" fill="#fff"><text x="153" y="62">Z</text><text x="169" y="45">z</text></g>
+                </g>
+              </svg>
+              <span class="otter-focus-label">和小獭打招呼</span>
+            </button>
+            <span class="otter-bubble otter-bubble-one" aria-hidden="true"></span><span class="otter-bubble otter-bubble-two" aria-hidden="true"></span><span class="otter-bubble otter-bubble-three" aria-hidden="true"></span>
+            <p class="otter-message" data-otter-message role="status" aria-live="polite" aria-atomic="true">小獭抱着贝壳，安静陪你一会儿。</p>
+            <p class="otter-tip">拖动小獭调整位置 · 方向键移动 · 点击或按 Enter 打招呼</p>
+          </div>
+        </section>
+        <section class="otter-controls" aria-label="小獭互动控制台">
+          <div class="otter-controls-copy"><span>今日陪伴</span><strong>3 个轻互动 · 纯 SVG / CSS</strong><small>动作结束后，小獭会继续抱着贝壳陪你。</small></div>
+          <div class="otter-actions">
+            <button type="button" data-otter-action="greet"><span aria-hidden="true">👋</span><strong>打招呼</strong><small>挥挥小爪</small></button>
+            <button type="button" data-otter-action="snack"><span aria-hidden="true">🐟</span><strong>送小鱼</strong><small>开心冒泡</small></button>
+            <button type="button" data-otter-action="rest" aria-pressed="false"><span aria-hidden="true">☾</span><strong>睡一会</strong><small>再次点击唤醒</small></button>
+          </div>
+        </section>
+      </section>
+
       <section class="view" id="view-effects" data-view-panel="effects" hidden>
         <header class="page-header effects-header"><div><span class="eyebrow">CODE EFFECTS COLLECTION</span><h1>代码特效</h1><p>每一张卡片都是浏览器实时绘制的动态场景。</p></div><span class="collection-count">02 个特效</span></header>
         <section class="effects-intro"><div><span>本期主题</span><strong>花与微光</strong></div><p>牡丹与玫瑰由独立花瓣逐层舒展，并在深色背景里缓慢呼吸。右侧目录可以快速定位，点击“重新盛开”可以随时重播。</p></section>
@@ -96,6 +149,6 @@
       <footer class="site-footer"><a href="index.html">返回欢迎首页</a><span>纯静态模块化应用</span></footer>
     </main>
   </div>
-  <script type="module" src="scripts/main.js?v=effects-2"></script>
+  <script type="module" src="scripts/main.js?v=otter-1"></script>
 </body>
 </html>
