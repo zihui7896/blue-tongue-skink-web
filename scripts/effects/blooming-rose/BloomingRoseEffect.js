@@ -2,6 +2,6 @@ import{PetalBloomEffect}from"../shared/PetalBloomEffect.js";
 
 export class BloomingRoseEffect extends PetalBloomEffect{
   constructor(canvas){
-    super(canvas,{seed:20260829,duration:7800,flowerImage:"assets/effects/blooming-rose/rose-3d-alpha.png",petalImage:"assets/effects/blooming-rose/rose-petal-alpha.png",center:{x:.54,y:.53},finalSize:{x:.86,y:1.1},finalRotation:-.012,layers:[{count:8,radius:.19,width:.33,height:.39,delay:.04,stagger:.08,twist:.38,phase:.12},{count:10,radius:.125,width:.25,height:.31,delay:.2,stagger:.08,twist:.64,phase:.4},{count:12,radius:.065,width:.17,height:.23,delay:.38,stagger:.09,twist:.92,phase:.16}],palette:{glow:"rgba(255,70,155,",mid:"rgba(101,49,120,.13)",shadow:"rgba(246,54,153,.27)",particleGlow:"rgba(255,100,189,.7)",particles:["rgba(255,102,178,","rgba(255,205,225,","rgba(151,104,235,"]}});
+    super(canvas,{seed:20260829,duration:8000,flowerImage:"assets/effects/blooming-rose/rose-natural-v2.png",center:{x:.54,y:.53},finalSize:{x:.86,y:1.1},openingRotation:.02,finalRotation:-.012,grade:{saturation:1,brightness:1,contrast:1,hue:0},mesh:{columns:15,rows:15,flowerCenter:{x:.5,y:.46},stemStart:.77,innerCompression:.88,outerCompression:.76,bottomCompression:.82,innerDelay:.3,curl:.02,phase:1.7},palette:{glow:"rgba(238,178,181,",mid:"rgba(51,68,65,.13)",shadow:"rgba(128,80,78,.16)",particleGlow:"rgba(232,166,172,.4)",particles:["rgba(225,145,158,","rgba(247,215,211,","rgba(169,191,158,"]}});
   }
 }

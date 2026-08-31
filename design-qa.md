@@ -1,96 +1,90 @@
-# Design QA — 3D Flower Code Effect
+# Design QA — Natural Botanical Flower Palette
 
 **Source visual truth**
 
-- `assets/screenshots/reference-flower.png`
-- `assets/screenshots/reference-effects-directory.jpg` (the user-provided right-side contents reference, 534 × 1058 px).
-- Original pixels: 571 × 534.
-- The linked video was also inspected at 2 fps over its flower sequence (0:00–0:09.5). The relevant visual state is the fully opened flower shown from roughly 0:02 onward.
-- Motion references were checked from a 12.2-second rose time-lapse and a 27.4-second peony time-lapse. The rose expands from the outer whorl and progressively loosens its spiral center; the peony first cracks at the center, then relaxes its dense inner petals and outer shell.
+- User direction: replace the rejected purple, blue-edged, neon-glass palette with colors found on real flowers.
+- User-provided flower framing reference: `assets/screenshots/reference-flower.png` (571 × 534 px).
+- Built-in ImageGen visual target, natural peony: `assets/effects/blooming-flower/flower-natural-v2.png` (1254 × 1254 px, RGBA).
+- Built-in ImageGen visual target, matching natural peony bud: `assets/effects/blooming-flower/flower-bud-natural-v2.png` (1254 × 1254 px, RGBA).
+- Built-in ImageGen visual target, natural rose: `assets/effects/blooming-rose/rose-natural-v2.png` (1254 × 1254 px, RGBA).
+- The actual-color target is pale shell pink, soft rose, cream highlights, warm yellow peony stamens, and natural green stems under diffused daylight. Purple petals, blue rims, cyan, fluorescence, internal glow, and crystal/glass material are out of scope.
 
 **Implementation evidence**
 
-- Full desktop view: `assets/screenshots/effects-bloom-desktop-final.png`
-- Focused flower crop: `assets/screenshots/effects-bloom-focus-final.png`
-- Mobile view: `assets/screenshots/effects-bloom-mobile.png`
-- Opening-state clarity check: `assets/screenshots/effects-bloom-opening-crisp.png`
-- Side-by-side normalized comparison: `assets/screenshots/design-qa-flower-comparison.png`
-- Directory/final rose desktop view: `assets/screenshots/effects-directory-rose-final.png` (1265 × 712 px).
-- Independent-petal motion view: `assets/screenshots/effects-peony-petal-motion.png` (1265 × 712 px).
-- Responsive directory view: `assets/screenshots/effects-directory-mobile.png` (375 × 812 px).
-- Directory side-by-side comparison: `assets/screenshots/design-qa-directory-comparison.png` (2077 × 900 px).
-- Desktop viewport: 1280 × 900 CSS px, device scale factor 1.
-- Implementation full-view pixels: 1280 × 900.
-- Focus crop pixels: 574 × 574.
-- State: dark theme effect stage, flower fully opened after the 8.2-second bloom animation.
+- Natural peony opening: `assets/screenshots/effects-peony-natural-opening.png` (369 × 725 px).
+- Natural peony final desktop view: `assets/screenshots/effects-peony-natural-final-v2.png` (1265 × 712 px).
+- Natural rose final desktop view: `assets/screenshots/effects-rose-natural-final.png` (1265 × 712 px).
+- Focused source/render comparison: `assets/screenshots/design-qa-natural-flower-comparison.png` (1300 × 820 px).
+- Desktop browser viewport: 1265 × 712 CSS px, device scale factor 1; screenshot pixels therefore match CSS pixels 1:1.
+- Opening capture viewport: 369 × 725 CSS px, device scale factor 1; screenshot pixels match CSS pixels 1:1.
 
-**Normalization**
+**State and normalization**
 
-- The 571 × 534 source was proportionally scaled and padded to 574 × 574 against the same dark backdrop.
-- The implementation was cropped to a centered 574 × 574 region of the effect stage.
-- The source includes its original top bar and watermark; those were treated as capture artifacts, not target content.
-- For the directory comparison, the 534 × 1058 reference and 1265 × 712 implementation were proportionally normalized to 900 px height and placed in the same comparison image. The source's document-specific entries were treated as sample content; its dark right-rail hierarchy was the visual target.
+- Final peony and rose captures were taken after each 8–8.6 second bloom cycle settled.
+- The opening capture was taken about 650 ms after replay, while the dedicated peony bud was intentionally defocused.
+- The comparison sheet uses equal 640 × 400 panels on a shared deep botanical green background. Top row: peony source asset / rendered peony stage. Bottom row: rose source asset / rendered rose stage.
+- The implementation stage crops were taken from the same 1265 × 712 viewport and resized only for equal-panel comparison. No color correction was applied to the comparison board.
 
 **Full-view comparison evidence**
 
-- The new effect preserves the existing blue-and-white LanDou application shell, sidebar rhythm, rounded cards, and typography.
-- The effect card has a strong single focal point, keeps its replay and speed controls visible, and does not overflow at desktop or 390 px mobile width.
-- The 3D flower fills the stage without clipping its primary outer-petal silhouette; the stem exits naturally through the lower edge, as in the source.
-- The new 210 px desktop directory remains sticky on the right, uses numbered rows and a dark panel like the reference, and highlights the currently visible animation. At widths below 820 px it becomes a two-item sticky horizontal directory above the grid.
-- Both the peony and rose now use separate transparent petal sprites. The petals begin in a compact upright bud, pivot around the flower base, unfold in species-specific layer order, and blend into the exact final 3D flower asset near completion.
+- The desktop page retains the existing LanDou shell, left navigation, white content cards, and right sticky directory.
+- The directory uses a deep green charcoal base with dusty-rose active states instead of the rejected violet/magenta treatment.
+- Both flower stages now use a neutral dark green background that supports the natural pink petals and green stems without introducing blue or purple color casts.
+- Directory navigation was used to move between peony and rose; the selected entry updates and the requested card is brought into view.
+- Replay controls and speed selectors remain visible and usable.
 
 **Focused region comparison evidence**
 
-- Both source and implementation use a luminous blush-pink center, darker translucent mauve outer petals, a three-quarter frontal angle, fine petal veins, a thin stem, and a deep blue-black background.
-- The implementation intentionally uses a cleaner, higher-resolution crystal/translucent material than the compressed source capture while retaining its palette and depth hierarchy.
-- The main subject is a generated raster asset rather than CSS/SVG/div art; Canvas is used for animation, blur, glow, breathing, and depth particles.
+- Peony: the rendered result preserves shell-pink outer petals, a slightly deeper rose center, warm yellow stamens, and a natural green stem. The stage does not add violet edges or neon bloom.
+- Rose: the rendered result preserves the warm coral-rose center, pale pink outer petals, fine petal texture, and green stem. The prior black edge holes from global white-key removal are gone.
+- Transparent background cleanup is connection-based from the image border, so pale petal highlights remain opaque while the generated checkerboard is removed.
+- The opening bud and final peony use the same botanical palette, avoiding the previous mismatch between a realistic opening and a fantasy-glass final state.
 
 **Required fidelity surfaces**
 
-- Fonts and typography: existing Segoe UI / Microsoft YaHei hierarchy is preserved; effect labels remain legible at desktop and mobile sizes.
-- Spacing and layout rhythm: sidebar, intro panel, effect card, stage, metadata, and controls retain consistent 16–24 px spacing and existing radii. No horizontal overflow at 390 px.
-- Colors and visual tokens: the application remains on its blue-white palette; the effect stage shifts locally to deep navy with blush, pearl, mauve, and violet-pink highlights matching the source.
-- Image quality and asset fidelity: final flower uses a clean alpha PNG with high-resolution petal edges and no watermark, placeholder, or checkerboard background. The flower is more detailed than the compressed reference while matching its visual family.
-- Copy and content: the category, effect name, 8-second duration, 3D asset/Canvas implementation label, replay action, and speed choices all describe the actual behavior.
-- Directory typography/content: the implementation preserves the reference's heading-plus-numbered-list hierarchy while replacing irrelevant document names with “牡丹盛开” and “玫瑰盛开”.
+- Fonts and typography: the existing Segoe UI / Microsoft YaHei hierarchy, weights, wrapping, and control labels remain unchanged and readable. The palette edit does not alter font metrics.
+- Spacing and layout rhythm: stage crop, card spacing, 18–24 px rhythm, radii, metadata alignment, and the 210 px directory track are unchanged. No new overflow or cropping was introduced.
+- Colors and visual tokens: effect-specific accents now use dusty rose, shell pink, sage, and deep botanical green. Purple/cyan/neon tokens were removed from the flowers, particles, stage, badges, replay hover, count badge, and effect directory.
+- Image quality and asset fidelity: all three flower states use 1254 px source rasters with RGBA transparency. Edge masking no longer removes pale petal highlights. No CSS flower drawing, repeated sprite petals, placeholder, emoji, or handcrafted SVG is visible.
+- Copy and content: peony copy now describes a shallow-pink bud, layered opening, and late yellow-center reveal. Rose copy still matches the outer-first, spiral-inner opening motion. The code overlay no longer describes the rose as crystal.
 
 **Primary interactions tested**
 
-- Entered the workspace from the welcome screen.
-- Switched between “蓝豆桌宠” and “代码特效”.
-- Collapsed and restored the desktop sidebar; opened and closed the mobile drawer.
-- Replayed the bloom and inspected its closed, mid-bloom, and fully opened states.
-- Replayed the bloom at 180 ms and confirmed the closed flower remains crisp without the previous opening blur.
-- Changed the bloom speed.
-- Clicked both directory entries and confirmed smooth scrolling plus `aria-current`/visual highlight updates.
-- Replayed both peony and rose and inspected compact bud, independent-petal motion, transition, and final flower states.
-- At 390 px browser viewport, confirmed 375 px body client/scroll widths, a two-column sticky directory, and a replay button fully inside the 351 px card after the mobile stage fix.
-- Confirmed all 9 pet actions still render; advanced the pet from frame 1 to frame 2.
-- Checked browser console warnings and errors: none.
+- Loaded `workspace.html#effects` in the in-app browser.
+- Replayed peony and captured its blurred bud opening and settled natural-color state.
+- Clicked the right directory's rose entry and confirmed navigation to the rose card and active selection state.
+- Let the rose settle and captured its final natural-color state.
+- Checked browser console errors: none.
+- Ran JavaScript syntax checks on the shared bloom renderer and both effect configuration modules: passed.
 
 **Comparison history**
 
-1. Initial Canvas pass: petals were symmetric, flat, and visually read as a lotus icon rather than the supplied 3D flower. Result: blocked (P1 subject mismatch).
-2. Procedural WebGL pass: petals gained depth but remained a dark, flattened radial fan. Result: blocked (P1 silhouette/material mismatch).
-3. Video-grounded 3D asset pass: replaced the approximate flower with an original translucent 3D flower asset, added actual alpha extraction, then kept the animation code-driven. Added foreground/background petal depth, code texture, soft glow, bloom compression, breathing, replay, and speed control. Post-fix evidence is `assets/screenshots/design-qa-flower-comparison.png`.
-4. Global-compression bloom pass: the complete flower bitmap was squeezed and expanded as one object. The user correctly rejected it because no petal moved independently. Result: blocked (P1 motion-model mismatch).
-5. Independent-petal pass: generated species-matched transparent peony and rose petal sprites, added a shared petal animation engine, anchored each petal at the flower base, and staggered three whorls using the observed rose/peony motion order. Fixed the first mid-state radial gap by keeping petal bases near the receptacle and aligning a clipped flower core behind them. Fixed mobile stage overflow caused by `aspect-ratio` plus `min-height`. Post-fix evidence is `assets/screenshots/effects-peony-petal-motion.png` and `assets/screenshots/effects-directory-mobile.png`.
+1. Earlier procedural and repeated-sprite attempts were blocked for flat radial motion and incorrect silhouette.
+2. The video-grounded mesh pass fixed the motion direction, but its purple/magenta/cyan glass palette remained a P1 mismatch after the user requested real flower colors.
+3. The first natural-raster pass was still blocked: global white-key removal damaged pale petal highlights and produced black mottled edges in the rendered rose.
+4. Final natural-botanical pass: generated matching peony, peony-bud, and rose assets; removed only neutral background pixels connected to the canvas border; restored neutral color grading; changed the stage and effect-specific interface accents to dusty rose, sage, and deep green; updated copy; and captured the result in the browser. Post-fix evidence: `assets/screenshots/design-qa-natural-flower-comparison.png`.
 
 **Findings**
 
-- No actionable P0/P1/P2 mismatch remains for the requested 3D flower effect.
-- P3: the implementation is cleaner and more crystalline than the softer, lower-resolution video capture. This is acceptable because it preserves the requested material, palette, depth, and subject while avoiding copied watermarks and compression artifacts.
-- P3: the code-driven petals use reusable species-matched sprites, so the intermediate state is more stylized and regular than botanical time-lapse footage. The actual action is now petal-based and the final state remains the full detailed 3D flower.
+- No actionable P0/P1/P2 mismatch remains for the requested real-flower palette, material, transparency, stage contrast, directory interaction, or readable layout.
+- P3: the bloom is still a Canvas mesh deformation over coherent high-resolution flower rasters rather than a fully rigged polygonal botanical model. The visible palette and layered opening behavior satisfy the current scope.
 
-**Implementation checklist**
+**Open Questions**
 
-- [x] Collapsible responsive sidebar.
-- [x] Dedicated code-effects category and responsive grid.
-- [x] First 3D flower effect with replay and speed control.
-- [x] Second 3D rose effect in its own asset and code folder.
-- [x] Independent petal motion for both flowers, based on rose/peony time-lapse order.
-- [x] Sticky right-side directory with scroll targeting and active-state tracking.
-- [x] Folder-based CSS, feature, data, component, and effect structure.
-- [x] Desktop/mobile visual and interaction verification.
+- None blocking. A later art-direction iteration could choose a specific real cultivar if a more exact peony or rose variety is desired.
+
+**Implementation Checklist**
+
+- [x] Replace fantasy purple/cyan flower assets with natural blush-pink botanical assets.
+- [x] Add a matching natural peony bud so the opening and final states share one cultivar and palette.
+- [x] Preserve cream petal highlights while removing the generated checkerboard background.
+- [x] Set flower color grades to neutral values.
+- [x] Shift glow, particle, stage, badge, replay, count, and directory colors to natural rose/sage/green tokens.
+- [x] Update visible descriptions and accessibility labels.
+- [x] Verify peony replay, rose directory navigation, final states, syntax, and console errors.
+
+**Follow-up Polish**
+
+- If requested, tune bloom timing per cultivar without changing the approved natural palette.
 
 final result: passed
