@@ -24,7 +24,9 @@ export class PetalBloomEffect{
     this.raf=0;
     this.flowerImage=this.loadImage(config.flowerImage);
     this.budImage=config.budImage?this.loadImage(config.budImage):null;
-    this.particles=this.createParticles(48);
+    const petalSources=config.petalImages||[config.petalImage||"assets/effects/shared/sakura-petal-v1.png"];
+    this.petalImages=petalSources.map(src=>this.loadImage(src));
+    this.particles=this.createParticles(config.particleCount||30);
     this.resizeObserver=new ResizeObserver(()=>this.resize());
     this.resizeObserver.observe(canvas);
     this.resize();
@@ -42,9 +44,9 @@ export class PetalBloomEffect{
     let seed=this.config.seed+97;
     const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
     return Array.from({length:count},(_,index)=>({
-      x:random(),y:random(),depth:.35+random(),size:3+random()*10,
-      spin:(random()-.5)*1.4,phase:random()*Math.PI*2,
-      speed:.018+random()*.04,hue:index%3
+      x:random(),y:random(),depth:.35+random()*.75,size:9+random()*18,
+      spin:(random()-.5)*1.8,phase:random()*Math.PI*2,
+      speed:.04+random()*.045,drift:(random()-.5)*.11,index
     }));
   }
 
@@ -80,7 +82,7 @@ export class PetalBloomEffect{
     const progress=clamp(elapsed/this.duration);
     const afterBloom=clamp((elapsed-this.duration)/2200);
     const breath=Math.sin(elapsed*.0012)*afterBloom;
-    this.drawBackdrop(ctx,w,h,progress);
+    if(this.config.backdrop!==false)this.drawBackdrop(ctx,w,h,progress);
     this.drawParticles(ctx,w,h,time,progress,false);
     if(this.flowerImage.complete&&this.flowerImage.naturalWidth){
       this.drawFlowerMesh(ctx,w,h,progress,breath);
@@ -246,18 +248,27 @@ export class PetalBloomEffect{
   }
 
   drawParticles(ctx,w,h,time,progress,foreground){
-    const palette=this.config.palette.particles;
     for(const particle of this.particles){
+      const image=this.petalImages[particle.index%this.petalImages.length];
+      if(!image?.complete||!image.naturalWidth)continue;
       const isFront=particle.depth>.82;
       if(isFront!==foreground)continue;
-      const cycle=(particle.y+time*.0001*particle.speed*60)%1;
-      const x=(particle.x+Math.sin(time*.00042+particle.phase)*.045+1)%1;
-      const y=cycle;
-      const size=particle.size*particle.depth*(.35+.65*progress);
-      const alpha=(foreground?.3:.17)*(.28+.72*progress);
-      ctx.save();ctx.translate(x*w,y*h);ctx.rotate(time*.00018*particle.spin+particle.phase);ctx.scale(1,.56);
-      ctx.beginPath();ctx.moveTo(-size,0);ctx.bezierCurveTo(-size*.35,-size*.7,size*.4,-size*.65,size,0);ctx.bezierCurveTo(size*.28,size*.65,-size*.35,size*.6,-size,0);
-      ctx.fillStyle=palette[particle.hue]+alpha+")";ctx.shadowColor=this.config.palette.particleGlow;ctx.shadowBlur=foreground?12:6;ctx.fill();ctx.restore();
+      const cycle=(particle.y+time*.001*particle.speed)%1;
+      const sway=Math.sin(time*.00062+particle.phase)*(.035+.025*particle.depth);
+      const x=(particle.x+sway+cycle*particle.drift+1)%1;
+      const size=particle.size*particle.depth;
+      const flutter=.52+Math.abs(Math.sin(time*.0011+particle.phase))*.48;
+      const alpha=foreground?.72:.4;
+      ctx.save();
+      ctx.translate(x*w,(cycle*1.16-.08)*h);
+      ctx.rotate(time*.00032*particle.spin+particle.phase+Math.sin(time*.0008+particle.phase)*.32);
+      ctx.scale(1,flutter);
+      ctx.globalAlpha=alpha;
+      ctx.filter=foreground?"none":"blur(.7px)";
+      ctx.shadowColor=this.config.palette.particleGlow;
+      ctx.shadowBlur=foreground?8:3;
+      ctx.drawImage(image,-size,-size,size*2,size*2);
+      ctx.restore();
     }
   }
 }
