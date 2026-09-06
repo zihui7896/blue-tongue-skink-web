@@ -1,10 +1,10 @@
-const VIEW_TITLES={pet:"蓝豆桌宠 · LanDou Creative Lab",cat:"橘团桌宠 · LanDou Creative Lab",effects:"代码特效 · LanDou Creative Lab"};
+const VIEW_TITLES={surprise:"心动宇宙 · LanDou Creative Lab",pet:"蓝豆桌宠 · LanDou Creative Lab",cat:"橘团桌宠 · LanDou Creative Lab",effects:"代码特效 · LanDou Creative Lab"};
 
 export function initSidebar({onViewChange}={}){
   const shell=document.querySelector("#app-shell"),collapse=document.querySelector("#sidebar-collapse"),reveal=document.querySelector("#sidebar-reveal"),scrim=document.querySelector("#sidebar-scrim"),navItems=[...document.querySelectorAll("[data-view]")],panels=[...document.querySelectorAll("[data-view-panel]")];
   const isMobile=()=>window.matchMedia("(max-width: 760px)").matches;
-  const viewFromHash=()=>location.hash==="#effects"?"effects":location.hash==="#cat"?"cat":"pet";
-  const hashForView=name=>name==="effects"?"#effects":name==="cat"?"#cat":"#playground";
+  const viewFromHash=()=>location.hash==="#surprise"?"surprise":location.hash==="#effects"?"effects":location.hash==="#cat"?"cat":"pet";
+  const hashForView=name=>name==="surprise"?"#surprise":name==="effects"?"#effects":name==="cat"?"#cat":"#playground";
 
   function setSidebar(open){
     if(isMobile()){
@@ -37,7 +37,7 @@ export function initSidebar({onViewChange}={}){
   }
 
   function showView(name){
-    const nextName=["pet","cat","effects"].includes(name)?name:"pet";
+    const nextName=["pet","cat","effects","surprise"].includes(name)?name:"pet";
     const nextHash=hashForView(nextName);
     if(location.hash!==nextHash)history.pushState(null,"",nextHash);
     renderView(nextName);
@@ -57,7 +57,7 @@ export function initSidebar({onViewChange}={}){
     }
   });
 
-  if(!["#effects","#cat","#playground"].includes(location.hash))history.replaceState(null,"","#playground");
+  if(!["#effects","#cat","#playground","#surprise"].includes(location.hash))history.replaceState(null,"","#playground");
   renderView(viewFromHash(),{scroll:false});
   if(isMobile())setSidebar(false);
   return{showView,setSidebar};

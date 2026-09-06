@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles/components/sidebar.css">
   <link rel="stylesheet" href="styles/components/pet-playground.css">
   <link rel="stylesheet" href="styles/components/effects-gallery.css">
+  <link rel="stylesheet" href="styles/components/surprise.css?v=galaxy-2">
 </head>
 <body>
   <div class="app-shell" id="app-shell">
@@ -27,6 +28,7 @@
         <button class="nav-item active" type="button" data-view="pet" aria-current="page"><span class="nav-mark" aria-hidden="true">01</span><span class="nav-copy"><strong>蓝豆桌宠</strong><small>动作与互动</small></span></button>
         <button class="nav-item" type="button" data-view="cat"><span class="nav-mark" aria-hidden="true">02</span><span class="nav-copy"><strong>橘团桌宠</strong><small>橘白长毛猫</small></span></button>
         <button class="nav-item" type="button" data-view="effects"><span class="nav-mark" aria-hidden="true">03</span><span class="nav-copy"><strong>代码特效</strong><small>实时生成动画</small></span></button>
+        <button class="nav-item" type="button" data-view="surprise"><span class="nav-mark" aria-hidden="true">04</span><span class="nav-copy"><strong>心动宇宙</strong><small>送你一整个星光世界</small></span></button>
       </nav>
       <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span><span class="sidebar-footer-copy"><strong>本地运行</strong><small>无需联网与构建</small></span></div>
     </aside>
@@ -70,6 +72,7 @@
 
       <section class="view" id="view-effects" data-view-panel="effects" hidden>
         <header class="page-header effects-header"><div><span class="eyebrow">CODE EFFECTS COLLECTION</span><h1>代码特效</h1><p>每一张卡片都是浏览器实时绘制的动态场景。</p></div><span class="collection-count">02 个特效</span></header>
+        <a class="effects-upgrade" href="#surprise"><span><small>NEW · 沉浸式互动</small><strong>心动宇宙 · 送你一整个星光世界</strong><small>漫游旋涡银河、穿越星海，打开写着你名字的惊喜。</small></span><b>进入 3D 宇宙 ↗</b></a>
         <section class="effects-intro"><div><span>本期主题</span><strong>花与樱落</strong></div><p>牡丹与玫瑰从朦胧花苞开始，外层花瓣先后翻开、花心稍后舒展；透明舞台上，前后景樱花花瓣持续旋转飘落。右侧目录可以快速定位，点击“重新盛开”可以随时重播。</p></section>
         <div class="effects-layout">
         <div class="effects-grid" aria-label="代码特效网格">
@@ -93,9 +96,21 @@
         <aside class="effects-directory" aria-label="特效目录"><span class="directory-kicker">CONTENTS</span><h3>动画目录</h3><p>点击名称快速定位</p><nav><button class="active" type="button" data-effect-target="effect-peony" aria-current="true"><b>01</b><span><strong>牡丹盛开</strong><small>Peony Bloom</small></span></button><button type="button" data-effect-target="effect-rose" aria-current="false"><b>02</b><span><strong>玫瑰盛开</strong><small>Rose Bloom</small></span></button></nav></aside>
         </div>
       </section>
+      <section class="view surprise-view" id="view-surprise" data-view-panel="surprise" hidden>
+        <div class="surprise-shell">
+          <div class="surprise-top"><span class="surprise-kicker">SOMEWHERE, AMONG A BILLION STARS</span><div class="surprise-tools"><button type="button" data-travel-universe>穿越星河 ↗</button><button type="button" data-pause-universe aria-pressed="false">暂停流动</button></div></div>
+          <div class="surprise-copy"><h1>宇宙很大，<br>偏偏遇见你。<em>You're my universe.</em></h1><p>把这一刻的星光，悄悄留给你。<br>在这里，每一次触碰都有回应。</p></div>
+          <span class="surprise-caption">穿过亿万星辰，来到你身边</span>
+          <canvas class="surprise-canvas" tabindex="0" aria-label="互动立体银河。滚轮缩放，拖动旋转，点击绽放星光；键盘方向键旋转，空格释放星光。"></canvas>
+          <div class="surprise-bottom"><div><p class="surprise-hint">拖动旋转 · 滚轮拉近星河 · 轻点点亮星光</p><div class="surprise-themes" role="group" aria-label="星光配色"><button type="button" data-universe-theme="rose" aria-pressed="true"><i style="--swatch:#eeaed3"></i>玫瑰星云</button><button type="button" data-universe-theme="aurora" aria-pressed="false"><i style="--swatch:#8fdce8"></i>极光之海</button><button type="button" data-universe-theme="gold" aria-pressed="false"><i style="--swatch:#ebcb98"></i>香槟月光</button></div></div>
+          <form class="surprise-gift"><label for="surprise-name">这份星光，想送给谁？</label><input id="surprise-name" maxlength="24" placeholder="写下名字，也可以留白" autocomplete="off"><button type="submit" data-open-gift>打开给你的惊喜 ↗</button></form></div>
+          <section class="surprise-note" role="dialog" aria-labelledby="surprise-recipient" hidden><small>A SMALL NOTE FROM THE UNIVERSE</small><h2 id="surprise-recipient" data-recipient>To 亲爱的你</h2><p>宇宙有无数颗星星，<br>但今天的这一颗，只为你亮起。<br>愿你被温柔以待，<br>也永远有为自己发光的勇气。</p><button type="button" data-close-note>收下星光，继续漫游 ♡</button></section>
+        </div>
+        <p class="surprise-status" data-surprise-status role="status">给自己一点发呆的时间。也可以用方向键旋转、空格键点亮星光。</p>
+      </section>
       <footer class="site-footer"><a href="index.html">返回欢迎首页</a><span>纯静态模块化应用</span></footer>
     </main>
   </div>
-  <script type="module" src="scripts/main.js?v=effects-12"></script>
+  <script type="module" src="scripts/main.js?v=galaxy-2"></script>
 </body>
 </html>
