@@ -1,19 +1,29 @@
-import{BloomingFlowerEffect}from"../effects/blooming-flower/BloomingFlowerEffect.js";
-import{BloomingRoseEffect}from"../effects/blooming-rose/BloomingRoseEffect.js";
-
-export function initEffectsGallery(){
-  const effects=new Map([
-    ["blooming-flower",new BloomingFlowerEffect(document.querySelector("#blooming-flower"))],
-    ["blooming-rose",new BloomingRoseEffect(document.querySelector("#blooming-rose"))]
-  ]);
-  document.querySelectorAll("[data-effect-speed]").forEach(select=>select.addEventListener("change",()=>effects.get(select.dataset.effectSpeed)?.setSpeed(select.value)));
-  document.querySelectorAll("[data-replay-effect]").forEach(button=>button.addEventListener("click",()=>{
-    effects.get(button.dataset.replayEffect)?.replay();button.textContent="正在盛开…";setTimeout(()=>button.textContent="重新盛开",1200);
-  }));
-  const directoryButtons=[...document.querySelectorAll("[data-effect-target]")],cards=[...document.querySelectorAll(".effect-card[id]")];
-  const setActive=id=>directoryButtons.forEach(button=>{const active=button.dataset.effectTarget===id;button.classList.toggle("active",active);button.setAttribute("aria-current",active?"true":"false")});
-  directoryButtons.forEach(button=>button.addEventListener("click",()=>{document.getElementById(button.dataset.effectTarget)?.scrollIntoView({behavior:"smooth",block:"start"});setActive(button.dataset.effectTarget)}));
-  const observer=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(visible)setActive(visible.target.id)},{rootMargin:"-18% 0px -52%",threshold:[.1,.3,.55]});
-  cards.forEach(card=>observer.observe(card));
-  return{setVisible:visible=>effects.forEach(effect=>effect.setVisible(visible)),replay:()=>effects.forEach(effect=>effect.replay())};
+export function initEffectsGallery() {
+  const cards = [...document.querySelectorAll('.particle-bloom-card')];
+  const effects = new Map(), loading = new Map(), onScreen = new Set();
+  let visible = false;
+  async function ensure(card) {
+    if (!visible || !onScreen.has(card)) return;
+    if (effects.has(card)) { effects.get(card).setVisible(true); return; }
+    if (loading.has(card)) return;
+    const task = import('../effects/particle-bloom/ParticleBloomEffect.js?v=flowers-3').then(({ParticleBloomEffect}) => {
+      const effect = new ParticleBloomEffect(card);
+      effects.set(card,effect); effect.setVisible(visible);
+      card.querySelectorAll('button,input,select').forEach(control=>control.disabled=false);
+    }).catch(error => {
+      card.querySelector('[data-bloom-phase]').textContent='3D 场景暂时无法启动，请启用硬件加速后刷新。';
+      console.error('Flower initialization failed',error);
+    });
+    loading.set(card,task);
+  }
+  const visibilityObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry=>{if(entry.isIntersecting){onScreen.add(entry.target);ensure(entry.target);}else onScreen.delete(entry.target);});
+  },{rootMargin:'120px',threshold:0});
+  cards.forEach(card=>visibilityObserver.observe(card));
+  const buttons=[...document.querySelectorAll('[data-effect-target]')];
+  function setActive(id){buttons.forEach(button=>{const active=button.dataset.effectTarget===id;button.classList.toggle('active',active);button.setAttribute('aria-current',String(active));});}
+  buttons.forEach(button=>button.addEventListener('click',()=>{document.getElementById(button.dataset.effectTarget)?.scrollIntoView({behavior:'smooth',block:'start'});setActive(button.dataset.effectTarget);}));
+  const directoryObserver=new IntersectionObserver(entries=>{const current=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(current)setActive(current.target.id);},{rootMargin:'-15% 0px -45%',threshold:[.01,.2,.5]});
+  cards.forEach(card=>directoryObserver.observe(card));
+  return {setVisible(value){visible=value;effects.forEach(effect=>effect.setVisible(value));if(value)onScreen.forEach(ensure);},replay(){effects.forEach(effect=>effect.replay());}};
 }

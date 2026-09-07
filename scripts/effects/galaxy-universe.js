@@ -18,8 +18,9 @@ export function createUniverse(root) {
   const gaussian = () => Math.sqrt(-2 * Math.log(Math.max(.00001, random()))) * Math.cos(random() * Math.PI * 2);
   const timeUniform = { value: 0 };
   const tintUniform = { value: new THREE.Color('#8f83ff') };
-  const pointVertex = `attribute float size; attribute float phase; varying vec3 vColor; varying float vPhase;
-    void main(){vColor=color;vPhase=phase;vec4 p=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*p;gl_PointSize=clamp(size*360./max(.2,-p.z),1.,90.);}`;
+  const revealUniform = { value: 0 }, flashUniform = { value: 0 };
+  const pointVertex = `attribute float size; attribute float phase; attribute vec3 destination; uniform float reveal; varying vec3 vColor; varying float vPhase;
+    void main(){vColor=mix(color,vec3(1.,.48+.3*sin(phase),.64),reveal*.7);vPhase=phase;vec4 p=modelViewMatrix*vec4(mix(position,destination,reveal),1.);gl_Position=projectionMatrix*p;gl_PointSize=clamp(size*(360.+reveal*110.)/max(.2,-p.z),1.,90.);}`;
   const pointFragment = `uniform float time; uniform float opacity; varying vec3 vColor; varying float vPhase;
     void main(){vec2 p=gl_PointCoord-.5;float r=length(p)*2.;if(r>1.)discard;
     float glow=exp(-r*r*7.)*.55+exp(-r*r*65.)*.8;
@@ -27,11 +28,12 @@ export function createUniverse(root) {
   function points(positions, colors, sizes, opacity = 1) {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+    geometry.setAttribute('destination',new THREE.Float32BufferAttribute(positions,3));
     geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));
     geometry.setAttribute('size',new THREE.Float32BufferAttribute(sizes,1));
     geometry.setAttribute('phase',new THREE.Float32BufferAttribute(sizes.map(() => random()*6.28),1));
     return new THREE.Points(geometry,new THREE.ShaderMaterial({
-      uniforms:{time:timeUniform,opacity:{value:opacity}}, vertexShader:pointVertex,fragmentShader:pointFragment,
+      uniforms:{time:timeUniform,opacity:{value:opacity},reveal:{value:0}}, vertexShader:pointVertex,fragmentShader:pointFragment,
       vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending
     }));
   }
@@ -54,6 +56,20 @@ export function createUniverse(root) {
     sizes.push((.014+Math.pow(random(),5)*.15)*(core?.7:1));
   }
   const stars=points(positions,colors,sizes,.9);galaxy.add(stars);
+  const destination = [];
+  for(let i=0;i<count;i++) {
+    const a=random()*Math.PI*2;
+    if(i<count*.82){
+      const fill=random()<.62?1+gaussian()*.025:Math.sqrt(random());
+      const x=16*Math.pow(Math.sin(a),3)*.35*fill;
+      const y=(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))*.35*fill;
+      destination.push(x+gaussian()*.065,y+.6,gaussian()*(.22+.48*fill));
+    }else{
+      const r=7+random()*5;destination.push(Math.cos(a)*r,Math.sin(a)*r*.6,gaussian()*.6-1);
+    }
+  }
+  stars.geometry.setAttribute('destination',new THREE.Float32BufferAttribute(destination,3));
+  stars.material.uniforms.reveal=revealUniform;
   // Soft cloud particles follow the same spiral but occupy a wider volume.
   const cloudP=[],cloudC=[],cloudS=[];
   for(let i=0;i<1900;i++) {
@@ -66,9 +82,9 @@ export function createUniverse(root) {
 
   // A screen-space nebula gives the entire vista uneven, wispy depth.
   const fog = new THREE.Mesh(new THREE.PlaneGeometry(2,2),new THREE.ShaderMaterial({
-    uniforms:{time:timeUniform,tint:tintUniform,aspect:{value:1}}, depthTest:false,depthWrite:false,
+    uniforms:{time:timeUniform,tint:tintUniform,aspect:{value:1},reveal:revealUniform,flash:flashUniform}, depthTest:false,depthWrite:false,
     vertexShader:`varying vec2 uvP;void main(){uvP=uv;gl_Position=vec4(position.xy,.999,1.);}`,
-    fragmentShader:`varying vec2 uvP;uniform float time;uniform float aspect;uniform vec3 tint;
+    fragmentShader:`varying vec2 uvP;uniform float time;uniform float aspect;uniform vec3 tint;uniform float reveal;uniform float flash;
     float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
     float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
     float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p=mat2(.8,.6,-.6,.8)*p*2.03+3.2;a*=.5;}return v;}
@@ -77,7 +93,9 @@ export function createUniverse(root) {
       float band=exp(-pow((p.y+p.x*.32+sin(p.x*1.3)*.22)*1.9,2.));
       float wisps=pow(n,2.8)*band;vec3 col=vec3(.005,.008,.023)+tint*wisps*.44;
       col+=vec3(.12,.25,.5)*pow(fbm(p*3.-5.),4.)*.45;
-      col*=.6+.4*(1.-smoothstep(.2,1.,length(uvP-.5)));gl_FragColor=vec4(col,1.);}`
+      col*=.6+.4*(1.-smoothstep(.2,1.,length(uvP-.5)));
+      col+=reveal*vec3(.24,.055,.13)*band*(.2+n*.5);
+      col+=flash*vec3(.6,.42,.28)*exp(-length(p)*.65);gl_FragColor=vec4(col,1.);}`
   }));
   fog.frustumCulled=false;fog.renderOrder=-100;scene.add(fog);
   const skyP=[],skyC=[],skyS=[];
@@ -98,9 +116,23 @@ export function createUniverse(root) {
 
   let active=false,paused=reduced.matches,frame=0,last=0,time=0,burstAge=9,travelAge=9,baseZ=19,targetZoom=1,zoom=1;
   let tx=.12,ty=-.87,drag=null,travelActive=false;
+  let revealTarget=0,arrived=false,savedRotation={x:ty,y:tx};
+  let giftReveal=null,giftAge=0;
   const pause=root.querySelector('[data-pause-universe]');
   const travel=root.querySelector('[data-travel-universe]');
   const status=root.querySelector('[data-surprise-status]');
+  const arrival=document.createElement('div');arrival.className='surprise-arrival';arrival.hidden=true;
+  const arrivalKicker=document.createElement('small');arrivalKicker.textContent='YOU WERE THE DESTINATION';
+  const arrivalTitle=document.createElement('h2');
+  const arrivalText=document.createElement('p');arrivalText.textContent='这一整片星海，都在为你心动。拖动，让星光随你转动。';
+  arrival.append(arrivalKicker,arrivalTitle,arrivalText);root.querySelector('.surprise-shell').append(arrival);
+  function arrive(){
+    arrived=true;revealTarget=1;tx=0;ty=-.08;
+    const name=root.querySelector('input').value.trim();
+    arrivalTitle.textContent=name?`${name}，终于遇见你。`:'穿过亿万星辰，终于遇见你。';
+    arrival.hidden=false;root.classList.add('has-arrived');travel.textContent='返回银河 ↗';
+    status.textContent='已抵达心动星云。可以继续旋转、点亮星光，或返回银河再次穿越。';
+  }
   const render=()=>renderer.render(scene,camera);
   function resize(){
     const {width,height}=canvas.getBoundingClientRect();if(!width||!height)return;
@@ -112,30 +144,55 @@ export function createUniverse(root) {
   function tick(now){
     frame=0;if(!active||document.hidden)return;
     const dt=Math.min((now-last)/1000||0,.04);last=now;
-    if(!paused){time+=dt;timeUniform.value=time;stars.rotation.z=time*.018;clouds.rotation.z=time*.018;sky.rotation.z=time*.0015;}
+    if(!paused){time+=dt;timeUniform.value=time;stars.rotation.z=time*.018*(1-revealUniform.value);clouds.rotation.z=time*.018;sky.rotation.z=time*.0015;}
+    revealUniform.value+=(revealTarget-revealUniform.value)*(reduced.matches?1:1-Math.exp(-dt*3.5));
+    clouds.material.uniforms.opacity.value=.055*(1-revealUniform.value*.6);
+    nucleus.material.uniforms.opacity.value=.8*(1-revealUniform.value);
     galaxy.rotation.y+=(tx-galaxy.rotation.y)*.065;galaxy.rotation.x+=(ty-galaxy.rotation.x)*.065;
     zoom+=(targetZoom-zoom)*.055;
     if(travelActive&&!paused){
       travelAge+=dt;const amount=Math.pow(Math.sin(Math.min(1,travelAge/5.5)*Math.PI),2);
+      flashUniform.value=Math.max(0,1-Math.abs(travelAge-4.3)/.9)*.65;
+      if(travelAge>=4.3&&!arrived)arrive();
       camera.position.z=baseZ*zoom-amount*baseZ*.61;trails.material.opacity=amount*.7;
       for(let i=0;i<streaks.length;i++){const s=streaks[i];s.z+=dt*(12+amount*45);if(s.z>camera.position.z-1)s.z=-65;
         streakP.set([s.x,s.y,s.z,s.x,s.y,s.z-amount*5-.05],i*6);}
       streakGeo.attributes.position.needsUpdate=true;
-      if(travelAge>=5.5){travelActive=false;travel.disabled=false;travel.textContent='穿越星河 ↗';trails.material.opacity=0;}
+      if(travelAge>=5.5){travelActive=false;travel.disabled=Boolean(giftReveal);travel.textContent='返回银河 ↗';trails.material.opacity=0;flashUniform.value=0;}
     }else if(!travelActive)camera.position.z=baseZ*zoom;
     if(sparks.visible){burstAge+=dt;const a=sparks.geometry.attributes.position;for(let i=0;i<300;i++){const v=velocities[i];a.setXYZ(i,v.x*burstAge,v.y*burstAge,v.z*burstAge);}a.needsUpdate=true;sparks.material.uniforms.opacity.value=Math.max(0,1-burstAge/2.6);sparks.visible=burstAge<2.6;}
+    if(giftReveal&&!travelActive&&!paused){
+      giftAge+=dt;
+      if(giftAge>=1.2){
+        burst();const reveal=giftReveal;giftReveal=null;travel.disabled=false;
+        root.classList.remove('gift-playing');reveal();
+        status.textContent='这一刻的星光，只为你亮起。';
+      }
+    }
     render();
     const settling=Math.abs(tx-galaxy.rotation.y)+Math.abs(ty-galaxy.rotation.x)+Math.abs(targetZoom-zoom)>.002;
-    if(!paused||sparks.visible||settling)frame=requestAnimationFrame(tick);
+    if(!frame&&(!paused||sparks.visible||settling||Math.abs(revealTarget-revealUniform.value)>.001))frame=requestAnimationFrame(tick);
   }
   function wake(){if(active&&!document.hidden&&!frame){last=performance.now();frame=requestAnimationFrame(tick);}}
   function burst(x=0,y=0){burstAge=0;sparks.position.set(x,y,3);sparks.visible=true;wake();}
   function travelToGalaxy(){
-    if(reduced.matches){burst();status.textContent='已开启减少动态效果，送你一束轻柔星光。';return;}
+    if(arrived){arrived=false;revealTarget=0;arrival.hidden=true;root.classList.remove('has-arrived');tx=savedRotation.y;ty=savedRotation.x;travel.textContent='穿越星河 ↗';status.textContent='已返回银河，随时可以再次出发。';wake();return;}
+    savedRotation={x:ty,y:tx};
+    if(reduced.matches){arrive();wake();return;}
     if(paused){paused=false;syncPause();}
     travelAge=0;travelActive=true;travel.disabled=true;travel.textContent='正在穿越…';wake();
   }
   travel.addEventListener('click',travelToGalaxy);
+  function openGift(reveal){
+    if(giftReveal)return;
+    if(reduced.matches){if(!arrived)arrive();revealUniform.value=1;render();reveal();return;}
+    giftReveal=reveal;giftAge=0;root.classList.add('gift-playing');
+    if(arrived){arrived=false;revealTarget=0;revealUniform.value=0;arrival.hidden=true;root.classList.remove('has-arrived');tx=savedRotation.y;ty=savedRotation.x;}
+    targetZoom=1;
+    if(!travelActive)travelToGalaxy();
+    if(paused){paused=false;syncPause();}
+    status.textContent='请稍等，正在把整片星海送到你面前…';wake();
+  }
   canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,tx,ty};canvas.setPointerCapture(e.pointerId);});
   canvas.addEventListener('pointermove',e=>{if(!drag)return;tx=drag.tx+(e.clientX-drag.x)*.004;ty=THREE.MathUtils.clamp(drag.ty+(e.clientY-drag.y)*.004,-1.4,.1);wake();});
   canvas.addEventListener('pointerup',e=>{
@@ -159,5 +216,5 @@ export function createUniverse(root) {
   document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else wake();});
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();active=false;cancelAnimationFrame(frame);frame=0;status.textContent='3D 场景已暂停，请刷新页面恢复。惊喜信笺仍可打开。';});
   resize();
-  return {burst,setVisible(value){active=value;if(value){resize();wake();}else{cancelAnimationFrame(frame);frame=0;}}};
+  return {burst,openGift,setVisible(value){active=value;if(value){resize();wake();}else{cancelAnimationFrame(frame);frame=0;}}};
 }
