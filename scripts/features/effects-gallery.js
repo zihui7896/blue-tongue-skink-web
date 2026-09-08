@@ -6,7 +6,7 @@ export function initEffectsGallery() {
     if (!visible || !onScreen.has(card)) return;
     if (effects.has(card)) { effects.get(card).setVisible(true); return; }
     if (loading.has(card)) return;
-    const task = import('../effects/particle-bloom/ParticleBloomEffect.js?v=flowers-3').then(({ParticleBloomEffect}) => {
+    const task = import('../effects/particle-bloom/ParticleBloomEffect.js?v=flowers-8').then(({ParticleBloomEffect}) => {
       const effect = new ParticleBloomEffect(card);
       effects.set(card,effect); effect.setVisible(visible);
       card.querySelectorAll('button,input,select').forEach(control=>control.disabled=false);

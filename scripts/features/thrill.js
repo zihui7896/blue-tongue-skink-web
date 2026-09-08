@@ -1,7 +1,8 @@
 const COPY = {
   coaster: ['在最高点，停留一秒。', '钢轨延伸到天空尽头，然后从脚下消失。'],
-  bridge: ['脚下，是一整座深谷。', '走上透明桥面，低头，纵身跃入山间云雾。'],
-  scare: ['这里，看起来很安静。', '阳光穿过树林。沿着小路，慢慢向前。']
+  bridge: ['这一步，脚下突然空了。', '沿着玻璃桥慢慢向前，脚下的玻璃突然开裂、碎落。'],
+  scare: ['这里，看起来很安静。', '阳光穿过树林。沿着小路，慢慢向前。'],
+  bungee: ['倒数结束，脚下就没有地面。', '站在云端边缘，身体向前，绳索会在最低点把你拉回。']
 };
 
 export function initThrill() {
@@ -12,7 +13,7 @@ export function initThrill() {
   let engine, loading, visible = false, mode = 'coaster', running = false;
   let elapsed = 0, frame = 0, last = 0, sound = false, audio;
   let scareAt = 10, pointer, yaw = 0, pitch = 0;
-  const duration = () => mode === 'scare' ? scareAt + 3 : mode === 'bridge' ? 19 : 24;
+  const duration = () => mode === 'scare' ? scareAt + 3 : mode === 'bridge' ? 19 : mode === 'bungee' ? 22 : 28;
   const status = message => { find('status').textContent = message; };
 
   function audioLevel(level, fright = false) {
@@ -41,7 +42,7 @@ export function initThrill() {
     find('phase').textContent = running ? state.phase : elapsed ? '已暂停' : '准备进入';
     find('time').textContent = `00:${String(Math.floor(elapsed)).padStart(2, '0')}`;
     find('progress').value = elapsed / duration();
-    audioLevel(state.volume, state.fright);
+    audioLevel(state.volume, state.fright || state.shatter);
   }
   function pause() {
     running = false; cancelAnimationFrame(frame); frame = 0;
@@ -75,7 +76,7 @@ export function initThrill() {
     if (engine) return engine;
     if (!loading) {
       find('start').disabled = true;
-      loading = import('../effects/thrill-world.js?v=1').then(({ ThrillWorld }) => {
+      loading = import('../effects/thrill-world.js?v=glass-break-4').then(({ ThrillWorld }) => {
         engine = new ThrillWorld(canvas); engine.select(mode); render(); return engine;
       }).catch(error => {
         status('无法启动 3D 场景，请开启浏览器硬件加速并刷新重试。');

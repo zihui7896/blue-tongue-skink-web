@@ -12,9 +12,10 @@
   <link rel="stylesheet" href="styles/components/sidebar.css">
   <link rel="stylesheet" href="styles/components/pet-playground.css">
   <link rel="stylesheet" href="styles/components/effects-gallery.css">
-  <link rel="stylesheet" href="styles/components/particle-bloom.css">
+  <link rel="stylesheet" href="styles/components/particle-bloom.css?v=flowers-8">
   <link rel="stylesheet" href="styles/components/surprise.css?v=gift-1">
   <link rel="stylesheet" href="styles/components/thrill.css?v=1">
+  <link rel="stylesheet" href="styles/components/thrill-presence.css?v=3">
 </head>
 <body>
   <div class="app-shell" id="app-shell">
@@ -31,7 +32,7 @@
         <button class="nav-item" type="button" data-view="cat"><span class="nav-mark" aria-hidden="true">02</span><span class="nav-copy"><strong>橘团桌宠</strong><small>橘白长毛猫</small></span></button>
         <button class="nav-item" type="button" data-view="effects"><span class="nav-mark" aria-hidden="true">03</span><span class="nav-copy"><strong>代码特效</strong><small>实时生成动画</small></span></button>
         <button class="nav-item" type="button" data-view="surprise"><span class="nav-mark" aria-hidden="true">04</span><span class="nav-copy"><strong>心动宇宙</strong><small>送你一整个星光世界</small></span></button>
-        <button class="nav-item" type="button" data-view="thrill"><span class="nav-mark" aria-hidden="true">05</span><span class="nav-copy"><strong>刺激吓人</strong><small>第一视角 · 三种体验</small></span></button>
+        <button class="nav-item" type="button" data-view="thrill"><span class="nav-mark" aria-hidden="true">05</span><span class="nav-copy"><strong>刺激吓人</strong><small>沉浸模拟 · 四种体验</small></span></button>
       </nav>
       <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span><span class="sidebar-footer-copy"><strong>本地运行</strong><small>无需联网与构建</small></span></div>
     </aside>
@@ -76,14 +77,14 @@
       <section class="view" id="view-effects" data-view-panel="effects" hidden>
         <header class="page-header effects-header"><div><span class="eyebrow">CODE EFFECTS COLLECTION</span><h1>代码特效</h1><p>看一朵花，把盛开的每一秒留给你。</p></div><span class="collection-count">03 个特效</span></header>
         <a class="effects-upgrade" href="#surprise"><span><small>NEW · 沉浸式互动</small><strong>心动宇宙 · 送你一整个星光世界</strong><small>漫游旋涡银河、穿越星海，打开写着你名字的惊喜。</small></span><b>进入 3D 宇宙 ↗</b></a>
-        <section class="effects-intro"><div><span>本期主题</span><strong>一场完整的盛开</strong></div><p>淡粉花瓣如薄纱般通透，从紧闭花苞到层层舒展。用 8 秒看完，也可以拖动进度，把喜欢的瞬间留住。</p></section>
+        <section class="effects-intro"><div><span>本期主题</span><strong>一场完整的盛开</strong></div><p>冰蓝、雾紫与玫瑰红，花瓣如薄纱般通透，从紧闭花苞到层层舒展。用 8 秒看完，也可以拖动进度，把喜欢的瞬间留住。</p></section>
         <div class="effects-layout">
         <div class="effects-grid" aria-label="代码特效网格">
           <article class="effect-card particle-bloom-card" id="effect-particle-bloom" data-flower="lotus">
             <div class="particle-bloom-stage">
-              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体粉色莲花，从花苞到完全盛开。拖动或使用左右方向键旋转观看。"></canvas>
-              <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 001</small><h3>粉色莲花 · 薄纱初绽</h3><p>细线织成花瓣，温柔慢慢舒展。</p></div>
-              <span class="particle-bloom-tip">拖动旋转 · 换个角度看盛开</span>
+              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体冰蓝莲花，从花苞到完全盛开。上下左右拖动，或使用方向键旋转观看。"></canvas>
+              <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 001</small><h3>冰蓝莲花 · 薄纱初绽</h3><p>细线织成花瓣，温柔慢慢舒展。</p></div>
+              <span class="particle-bloom-tip">上下左右拖动 · 换个角度看盛开</span>
             </div>
             <div class="particle-bloom-control">
               <div class="particle-bloom-state"><strong data-bloom-phase role="status">正在准备花苞…</strong><output data-bloom-time>0.0 / 8.0 s</output></div>
@@ -94,9 +95,9 @@
           </article>
           <article class="effect-card particle-bloom-card" id="effect-peony" data-flower="peony">
             <div class="particle-bloom-stage">
-              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体牡丹，从花苞到完全盛开。拖动或使用左右方向键旋转观看。"></canvas>
-              <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 002</small><h3>牡丹 · 烟粉重瓣</h3><p>重重叠叠的褶皱花瓣，慢慢铺开一场温柔。</p></div>
-              <span class="particle-bloom-tip">拖动旋转 · 换个角度看盛开</span>
+              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体雾紫牡丹，从花苞到完全盛开。上下左右拖动，或使用方向键旋转观看。"></canvas>
+              <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 002</small><h3>牡丹 · 雾紫重瓣</h3><p>重重叠叠的褶皱花瓣，慢慢铺开一场温柔。</p></div>
+              <span class="particle-bloom-tip">上下左右拖动 · 换个角度看盛开</span>
             </div>
             <div class="particle-bloom-control">
               <div class="particle-bloom-state"><strong data-bloom-phase role="status">正在准备花苞…</strong><output data-bloom-time>0.0 / 8.0 s</output></div>
@@ -107,9 +108,9 @@
           </article>
           <article class="effect-card particle-bloom-card" id="effect-rose" data-flower="rose">
             <div class="particle-bloom-stage">
-              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体玫瑰，从花苞到完全盛开。拖动或使用左右方向键旋转观看。"></canvas>
+              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体红玫瑰，从花苞到完全盛开。上下左右拖动，或使用方向键旋转观看。"></canvas>
               <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 003</small><h3>玫瑰 · 螺旋心事</h3><p>一圈一圈松开花心，藏不住的玫瑰色心事。</p></div>
-              <span class="particle-bloom-tip">拖动旋转 · 换个角度看盛开</span>
+              <span class="particle-bloom-tip">上下左右拖动 · 换个角度看盛开</span>
             </div>
             <div class="particle-bloom-control">
               <div class="particle-bloom-state"><strong data-bloom-phase role="status">正在准备花苞…</strong><output data-bloom-time>0.0 / 8.0 s</output></div>
@@ -119,7 +120,7 @@
             </div>
           </article>
         </div>
-        <aside class="effects-directory" aria-label="特效目录"><span class="directory-kicker">CONTENTS</span><h3>动画目录</h3><p>点击名称快速定位</p><nav><button class="active" type="button" data-effect-target="effect-particle-bloom" aria-current="true"><b>01</b><span><strong>粉色莲花</strong><small>Particle Bloom</small></span></button><button type="button" data-effect-target="effect-peony" aria-current="false"><b>02</b><span><strong>牡丹盛开</strong><small>Peony Bloom</small></span></button><button type="button" data-effect-target="effect-rose" aria-current="false"><b>03</b><span><strong>玫瑰盛开</strong><small>Rose Bloom</small></span></button></nav></aside>
+        <aside class="effects-directory" aria-label="特效目录"><span class="directory-kicker">CONTENTS</span><h3>动画目录</h3><p>点击名称快速定位</p><nav><button class="active" type="button" data-effect-target="effect-particle-bloom" aria-current="true"><b>01</b><span><strong>冰蓝莲花</strong><small>Particle Bloom</small></span></button><button type="button" data-effect-target="effect-peony" aria-current="false"><b>02</b><span><strong>牡丹盛开</strong><small>Peony Bloom</small></span></button><button type="button" data-effect-target="effect-rose" aria-current="false"><b>03</b><span><strong>玫瑰盛开</strong><small>Rose Bloom</small></span></button></nav></aside>
         </div>
       </section>
       <section class="view surprise-view" id="view-surprise" data-view-panel="surprise" hidden>
@@ -135,11 +136,12 @@
         <p class="surprise-status" data-surprise-status role="status">给自己一点发呆的时间。也可以用方向键旋转、空格键点亮星光。</p>
       </section>
       <section class="view thrill-view" id="view-thrill" data-view-panel="thrill" hidden>
-        <header class="page-header"><div><span class="eyebrow">FIRST PERSON / IMMERSIVE CINEMA</span><h1>刺激吓人</h1><p>把视线交给前方，把心跳留给自己。</p></div><span class="collection-count">03 种独立体验</span></header>
+        <header class="page-header"><div><span class="eyebrow">FIRST PERSON / IMMERSIVE SIMULATION</span><h1>刺激吓人</h1><p>站到高处，低头，感受脚下的距离。</p></div><span class="collection-count">04 种独立体验</span></header>
         <div class="thrill-choices" role="group" aria-label="切换刺激场景">
-          <button type="button" data-thrill-mode="coaster" aria-pressed="true"><small>01 / FREE FALL</small><strong>过山车 · 垂直俯冲</strong><span>缓慢越过顶点，突然一落千丈</span></button>
-          <button type="button" data-thrill-mode="bridge" aria-pressed="false"><small>02 / ABOVE THE CLOUDS</small><strong>玻璃桥 · 深谷跃下</strong><span>张家界峡谷风格，透过玻璃望向谷底</span></button>
+          <button type="button" data-thrill-mode="coaster" aria-pressed="true"><small>01 / VERTICAL LOOP</small><strong>过山车 · 俯冲翻环</strong><span>钢轨俯冲，中段 360° 倒悬翻环</span></button>
+          <button type="button" data-thrill-mode="bridge" aria-pressed="false"><small>02 / GLASS BREAK</small><strong>玻璃桥 · 脚下碎裂</strong><span>走着走着，脚下的玻璃突然碎掉</span></button>
           <button type="button" data-thrill-mode="scare" aria-pressed="false"><small>03 / DON'T LOOK AWAY</small><strong>美景之后 · 突然惊吓</strong><span>安静的林间，藏着一次意料之外</span></button>
+          <button type="button" data-thrill-mode="bungee" aria-pressed="false"><small>04 / BUNGEE DROP</small><strong>高空蹦极 · 踏空下坠</strong><span>自由落体、绳索拉伸、反复回弹</span></button>
         </div>
         <div class="thrill-cinema" data-thrill-cinema>
           <canvas data-thrill-canvas tabindex="0" aria-label="第一视角沉浸场景，拖动或方向键转头，空格暂停，Escape 停止"></canvas>
@@ -154,6 +156,6 @@
       <footer class="site-footer"><a href="index.html">返回欢迎首页</a><span>纯静态模块化应用</span></footer>
     </main>
   </div>
-  <script type="module" src="scripts/main.js?v=flowers-3-thrill-1"></script>
+  <script type="module" src="scripts/main.js?v=flowers-8-glass-break-4"></script>
 </body>
 </html>
