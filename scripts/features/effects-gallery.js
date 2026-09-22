@@ -6,12 +6,17 @@ export function initEffectsGallery() {
     if (!visible || !onScreen.has(card)) return;
     if (effects.has(card)) { effects.get(card).setVisible(true); return; }
     if (loading.has(card)) return;
-    const task = import('../effects/particle-bloom/ParticleBloomEffect.js?v=flowers-8').then(({ParticleBloomEffect}) => {
-      const effect = new ParticleBloomEffect(card);
+    const isReference = card.hasAttribute('data-bloom-video');
+    const module = isReference
+      ? import('../effects/particle-bloom/ReferenceBloomEffect.js?v=reference-8')
+      : import('../effects/particle-bloom/ParticleBloomEffect.js?v=flowers-19');
+    const task = module.then(exports => {
+      const Effect = isReference ? exports.ReferenceBloomEffect : exports.ParticleBloomEffect;
+      const effect = new Effect(card);
       effects.set(card,effect); effect.setVisible(visible);
-      card.querySelectorAll('button,input,select').forEach(control=>control.disabled=false);
+      if (!isReference) card.querySelectorAll('button,input,select').forEach(control=>control.disabled=false);
     }).catch(error => {
-      card.querySelector('[data-bloom-phase]').textContent='3D 场景暂时无法启动，请启用硬件加速后刷新。';
+      card.querySelector('[data-bloom-phase]').textContent=isReference?'请使用画面内的视频控件播放。':'3D 场景暂时无法启动，请启用硬件加速后刷新。';
       console.error('Flower initialization failed',error);
     });
     loading.set(card,task);

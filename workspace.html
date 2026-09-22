@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles/components/sidebar.css">
   <link rel="stylesheet" href="styles/components/pet-playground.css">
   <link rel="stylesheet" href="styles/components/effects-gallery.css">
-  <link rel="stylesheet" href="styles/components/particle-bloom.css?v=flowers-8">
+  <link rel="stylesheet" href="styles/components/particle-bloom.css?v=reference-8">
   <link rel="stylesheet" href="styles/components/surprise.css?v=gift-1">
   <link rel="stylesheet" href="styles/components/thrill.css?v=1">
   <link rel="stylesheet" href="styles/components/thrill-presence.css?v=3">
@@ -77,50 +77,48 @@
       <section class="view" id="view-effects" data-view-panel="effects" hidden>
         <header class="page-header effects-header"><div><span class="eyebrow">CODE EFFECTS COLLECTION</span><h1>代码特效</h1><p>看一朵花，把盛开的每一秒留给你。</p></div><span class="collection-count">03 个特效</span></header>
         <a class="effects-upgrade" href="#surprise"><span><small>NEW · 沉浸式互动</small><strong>心动宇宙 · 送你一整个星光世界</strong><small>漫游旋涡银河、穿越星海，打开写着你名字的惊喜。</small></span><b>进入 3D 宇宙 ↗</b></a>
-        <section class="effects-intro"><div><span>本期主题</span><strong>一场完整的盛开</strong></div><p>冰蓝、雾紫与玫瑰红，花瓣如薄纱般通透，从紧闭花苞到层层舒展。用 8 秒看完，也可以拖动进度，把喜欢的瞬间留住。</p></section>
+        <section class="effects-intro"><div><span>本期主题</span><strong>把花开的瞬间留住</strong></div><p>先看参考视频里的薄纱花瓣与立体光影，再看按牡丹重瓣和玫瑰螺旋结构制作的 3D 花朵。可以暂停、重播，也可以拖动进度细看。</p></section>
         <div class="effects-layout">
         <div class="effects-grid" aria-label="代码特效网格">
-          <article class="effect-card particle-bloom-card" id="effect-particle-bloom" data-flower="lotus">
+          <article class="effect-card particle-bloom-card reference-bloom-card" id="effect-particle-bloom" data-flower="lotus" data-bloom-video>
             <div class="particle-bloom-stage">
-              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体冰蓝莲花，从花苞到完全盛开。上下左右拖动，或使用方向键旋转观看。"></canvas>
-              <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 001</small><h3>冰蓝莲花 · 薄纱初绽</h3><p>细线织成花瓣，温柔慢慢舒展。</p></div>
-              <span class="particle-bloom-tip">上下左右拖动 · 换个角度看盛开</span>
+              <div class="particle-bloom-caption"><small>REFERENCE FILM / 001</small><h3>薄纱花开 · 视频原貌</h3><p>保留你喜欢的花形、光影与流动。</p></div>
+              <video controls muted playsinline preload="metadata" poster="assets/effects/reference-bloom/poster-clean.jpg?v=clean-2" src="assets/effects/reference-bloom/flower-clean.mp4?v=clean-2" aria-label="参考视频里的薄纱花朵，保留原始立体光影与运动"></video>
             </div>
             <div class="particle-bloom-control">
-              <div class="particle-bloom-state"><strong data-bloom-phase role="status">正在准备花苞…</strong><output data-bloom-time>0.0 / 8.0 s</output></div>
+              <div class="particle-bloom-state"><strong data-bloom-phase role="status">正在准备视频…</strong><output data-bloom-time>0.0 / 5.0 s</output></div>
               <input data-bloom-progress type="range" min="0" max="100" value="0" step="0.1" aria-label="完整盛开进度" disabled>
-              <div class="particle-bloom-steps" role="group" aria-label="选择盛开阶段"><button type="button" data-bloom-step="0" aria-pressed="true" disabled>01 含苞</button><button type="button" data-bloom-step="0.25" aria-pressed="false" disabled>02 初绽</button><button type="button" data-bloom-step="0.48" aria-pressed="false" disabled>03 舒展</button><button type="button" data-bloom-step="0.76" aria-pressed="false" disabled>04 绽放</button><button type="button" data-bloom-step="1" aria-pressed="false" disabled>05 盛放</button></div>
-              <div class="particle-bloom-actions"><button type="button" data-bloom-replay disabled>重新盛开 ↻</button><button type="button" data-bloom-toggle aria-pressed="false" disabled>暂停</button><label>播放速度<select data-bloom-speed aria-label="粒子花朵盛开速度" disabled><option value="0.5">慢慢来 · 0.5×</option><option value="1" selected>自然 · 1×</option><option value="1.5">轻快 · 1.5×</option></select></label></div>
+              <div class="particle-bloom-steps" role="group" aria-label="选择视频片段"><button type="button" data-bloom-step="0" aria-pressed="true" disabled>01 初见</button><button type="button" data-bloom-step="0.25" aria-pressed="false" disabled>02 舒展</button><button type="button" data-bloom-step="0.48" aria-pressed="false" disabled>03 靠近</button><button type="button" data-bloom-step="0.76" aria-pressed="false" disabled>04 细节</button><button type="button" data-bloom-step="1" aria-pressed="false" disabled>05 定格</button></div>
+              <div class="particle-bloom-actions"><button type="button" data-bloom-replay disabled>重新播放 ↻</button><button type="button" data-bloom-toggle aria-pressed="false" disabled>暂停</button><label>播放速度<select data-bloom-speed aria-label="参考视频播放速度" disabled><option value="0.5">慢慢来 · 0.5×</option><option value="1" selected>自然 · 1×</option><option value="1.5">轻快 · 1.5×</option></select></label></div>
+              <p class="reference-bloom-credit">参考视频片段 · 原画面：爱喝芋圆葡萄</p>
             </div>
           </article>
           <article class="effect-card particle-bloom-card" id="effect-peony" data-flower="peony">
             <div class="particle-bloom-stage">
-              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体雾紫牡丹，从花苞到完全盛开。上下左右拖动，或使用方向键旋转观看。"></canvas>
-              <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 002</small><h3>牡丹 · 雾紫重瓣</h3><p>重重叠叠的褶皱花瓣，慢慢铺开一场温柔。</p></div>
-              <span class="particle-bloom-tip">上下左右拖动 · 换个角度看盛开</span>
+              <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体粉红牡丹，从花苞到完全盛开。上下左右拖动，或使用方向键旋转观看。"></canvas>
+              <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 002</small><h3>牡丹 · 粉霞重瓣</h3><p>重重叠叠的褶皱花瓣，慢慢铺开一场温柔。</p></div>
             </div>
             <div class="particle-bloom-control">
               <div class="particle-bloom-state"><strong data-bloom-phase role="status">正在准备花苞…</strong><output data-bloom-time>0.0 / 8.0 s</output></div>
               <input data-bloom-progress type="range" min="0" max="100" value="0" step="0.1" aria-label="完整盛开进度" disabled>
               <div class="particle-bloom-steps" role="group" aria-label="选择盛开阶段"><button type="button" data-bloom-step="0" aria-pressed="true" disabled>01 含苞</button><button type="button" data-bloom-step="0.25" aria-pressed="false" disabled>02 初绽</button><button type="button" data-bloom-step="0.48" aria-pressed="false" disabled>03 舒展</button><button type="button" data-bloom-step="0.76" aria-pressed="false" disabled>04 绽放</button><button type="button" data-bloom-step="1" aria-pressed="false" disabled>05 盛放</button></div>
-              <div class="particle-bloom-actions"><button type="button" data-bloom-replay disabled>重新盛开 ↻</button><button type="button" data-bloom-toggle aria-pressed="false" disabled>暂停</button><label>播放速度<select data-bloom-speed aria-label="粒子花朵盛开速度" disabled><option value="0.5">慢慢来 · 0.5×</option><option value="1" selected>自然 · 1×</option><option value="1.5">轻快 · 1.5×</option></select></label></div>
+              <div class="particle-bloom-actions"><button type="button" data-bloom-replay disabled>重新盛开 ↻</button><button type="button" data-bloom-toggle aria-pressed="false" disabled>暂停</button><label>播放速度<select data-bloom-speed aria-label="牡丹花朵盛开速度" disabled><option value="0.5">慢慢来 · 0.5×</option><option value="1" selected>自然 · 1×</option><option value="1.5">轻快 · 1.5×</option></select></label></div>
             </div>
           </article>
           <article class="effect-card particle-bloom-card" id="effect-rose" data-flower="rose">
             <div class="particle-bloom-stage">
               <canvas tabindex="0" aria-label="具有细线肌理和通透花瓣的立体红玫瑰，从花苞到完全盛开。上下左右拖动，或使用方向键旋转观看。"></canvas>
               <div class="particle-bloom-caption"><small>TRANSLUCENT BLOOM / 003</small><h3>玫瑰 · 螺旋心事</h3><p>一圈一圈松开花心，藏不住的玫瑰色心事。</p></div>
-              <span class="particle-bloom-tip">上下左右拖动 · 换个角度看盛开</span>
             </div>
             <div class="particle-bloom-control">
               <div class="particle-bloom-state"><strong data-bloom-phase role="status">正在准备花苞…</strong><output data-bloom-time>0.0 / 8.0 s</output></div>
               <input data-bloom-progress type="range" min="0" max="100" value="0" step="0.1" aria-label="完整盛开进度" disabled>
               <div class="particle-bloom-steps" role="group" aria-label="选择盛开阶段"><button type="button" data-bloom-step="0" aria-pressed="true" disabled>01 含苞</button><button type="button" data-bloom-step="0.25" aria-pressed="false" disabled>02 初绽</button><button type="button" data-bloom-step="0.48" aria-pressed="false" disabled>03 舒展</button><button type="button" data-bloom-step="0.76" aria-pressed="false" disabled>04 绽放</button><button type="button" data-bloom-step="1" aria-pressed="false" disabled>05 盛放</button></div>
-              <div class="particle-bloom-actions"><button type="button" data-bloom-replay disabled>重新盛开 ↻</button><button type="button" data-bloom-toggle aria-pressed="false" disabled>暂停</button><label>播放速度<select data-bloom-speed aria-label="粒子花朵盛开速度" disabled><option value="0.5">慢慢来 · 0.5×</option><option value="1" selected>自然 · 1×</option><option value="1.5">轻快 · 1.5×</option></select></label></div>
+              <div class="particle-bloom-actions"><button type="button" data-bloom-replay disabled>重新盛开 ↻</button><button type="button" data-bloom-toggle aria-pressed="false" disabled>暂停</button><label>播放速度<select data-bloom-speed aria-label="玫瑰花朵盛开速度" disabled><option value="0.5">慢慢来 · 0.5×</option><option value="1" selected>自然 · 1×</option><option value="1.5">轻快 · 1.5×</option></select></label></div>
             </div>
           </article>
         </div>
-        <aside class="effects-directory" aria-label="特效目录"><span class="directory-kicker">CONTENTS</span><h3>动画目录</h3><p>点击名称快速定位</p><nav><button class="active" type="button" data-effect-target="effect-particle-bloom" aria-current="true"><b>01</b><span><strong>冰蓝莲花</strong><small>Particle Bloom</small></span></button><button type="button" data-effect-target="effect-peony" aria-current="false"><b>02</b><span><strong>牡丹盛开</strong><small>Peony Bloom</small></span></button><button type="button" data-effect-target="effect-rose" aria-current="false"><b>03</b><span><strong>玫瑰盛开</strong><small>Rose Bloom</small></span></button></nav></aside>
+        <aside class="effects-directory" aria-label="特效目录"><span class="directory-kicker">CONTENTS</span><h3>动画目录</h3><p>点击名称快速定位</p><nav><button class="active" type="button" data-effect-target="effect-particle-bloom" aria-current="true"><b>01</b><span><strong>视频原貌</strong><small>Reference Film</small></span></button><button type="button" data-effect-target="effect-peony" aria-current="false"><b>02</b><span><strong>牡丹盛开</strong><small>Peony Bloom</small></span></button><button type="button" data-effect-target="effect-rose" aria-current="false"><b>03</b><span><strong>玫瑰盛开</strong><small>Rose Bloom</small></span></button></nav></aside>
         </div>
       </section>
       <section class="view surprise-view" id="view-surprise" data-view-panel="surprise" hidden>
@@ -156,6 +154,6 @@
       <footer class="site-footer"><a href="index.html">返回欢迎首页</a><span>纯静态模块化应用</span></footer>
     </main>
   </div>
-  <script type="module" src="scripts/main.js?v=flowers-8-glass-break-4"></script>
+  <script type="module" src="scripts/main.js?v=reference-8-glass-break-4"></script>
 </body>
 </html>

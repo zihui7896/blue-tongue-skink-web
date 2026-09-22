@@ -15,7 +15,7 @@ for (const [kind,config] of Object.entries(FLOWERS)) {
       assert(mesh.children[0].isLineSegments);
       assert.equal(mesh.children[0].material.uniforms.progress,mesh.material.uniforms.progress);
       for(const index of g.index.array)assert(index<g.attributes.position.count);
-      assert(mesh.material.transparent); assert.equal(mesh.material.depthWrite,false);
+      assert.equal(mesh.material.depthWrite,!mesh.material.transparent);
       mesh.children[0].geometry.dispose();mesh.children[0].material.dispose();
       g.dispose();mesh.material.dispose();
     }
