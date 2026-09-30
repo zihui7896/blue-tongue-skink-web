@@ -1,6 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
-import { DURATION, clamp01, smooth, stageFor } from './geometry.js?v=flowers-18';
-import { makeVeilPetals } from './VeilPetals.js?v=flowers-18';
+import { DURATION, clamp01, smooth, stageFor } from './geometry.js?v=flowers-21';
+import { makeVeilPetals } from './VeilPetals.js?v=flowers-21';
 
 export class ParticleBloomEffect {
   constructor(card) {

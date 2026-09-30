@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import { FLOWERS } from './geometry.js?v=flowers-18';
+import { FLOWERS } from './geometry.js?v=flowers-21';
 
 // Evaluate the bent surface every GPU frame, rather than blending 3 poses.
 const vertexShader = `
@@ -40,21 +40,22 @@ export function makeVeilPetals(progressUniform,kind='lotus') {
   config.counts.forEach((count,layer)=>{
     for(let petal=0;petal<count;petal++){
       const angle=petal/count*Math.PI*2+layer*2.39996+Math.sin(petal*13.7+layer*3.1)*.14;
-      const uniforms={progress:progressUniform,layer:{value:layer},layers:{value:config.counts.length},angle:{value:angle},widthScale:{value:config.width*(1+Math.sin(angle*5.1)*.07)},curl:{value:config.ripple*1.7},twistAmount:{value:config.twist},spread:{value:config.spread*.64},shapeMode:{value:kind==='peony'?1:kind==='rose'?.82:0},petalColor:{value:new THREE.Color(...config.color)}};
+      const uniforms={progress:progressUniform,layer:{value:layer},layers:{value:config.counts.length},angle:{value:angle},widthScale:{value:config.width*(1+Math.sin(angle*5.1)*.07)},curl:{value:config.ripple*1.7},twistAmount:{value:config.twist},spread:{value:config.spread*.64},shapeMode:{value:kind==='peony'?1:kind==='rose'?.82:0},petalColor:{value:new THREE.Color(...config.color)},edgeColor:{value:new THREE.Color(...config.edge)}};
       const uv=[],positions=[],indices=[];
       for(let row=0;row<=rows;row++)for(let col=0;col<=columns;col++){uv.push(col/columns*2-1,row/rows);positions.push(0,0,0);}
       for(let row=0;row<rows;row++)for(let col=0;col<columns;col++){const a=row*(columns+1)+col,b=a+columns+1;indices.push(a,b,a+1,b,b+1,a+1);}
       const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('petalUV',new THREE.Float32BufferAttribute(uv,2));geometry.setIndex(indices);
       // Inner petals occlude one another; only the outer whorls are gauze.
       const material=new THREE.ShaderMaterial({uniforms,vertexShader,transparent:true,depthWrite:false,side:THREE.DoubleSide,forceSinglePass:true,
-        fragmentShader:`uniform vec3 petalColor;uniform float layer,layers;varying vec2 vUv;varying vec3 vView;
+        fragmentShader:`uniform vec3 petalColor,edgeColor;uniform float layer,layers;varying vec2 vUv;varying vec3 vView;
         void main(){if(vUv.y<.035)discard;vec3 normal=normalize(cross(dFdx(vView),dFdy(vView)));float light=.70+.30*abs(dot(normal,normalize(vec3(-.4,.7,1.))));
           float rim=pow(1.-abs(dot(normal,normalize(-vView))),2.);
           float n=layer/(layers-1.);float border=pow(abs(vUv.x*2.-1.),22.)+smoothstep(.98,1.,vUv.y);
           // Inner cup petals carry the colour; the outer gauze rim stays light.
           float alpha=(mix(.035,.22,n)+rim*.05+border*.06)*smoothstep(.025,.22,vUv.y);
           float crease=.965+.035*sin(vUv.x*30.+vUv.y*7.);
-          vec3 color=mix(petalColor,vec3(.98,.99,1.),.46+vUv.y*.14)*light*crease;
+          float tint=smoothstep(.12,1.,vUv.y)*(.80-n*.38);
+          vec3 color=mix(petalColor,edgeColor,tint)*light*crease;
           gl_FragColor=vec4(color,alpha);}`});
       const mesh=new THREE.Mesh(geometry,material);mesh.frustumCulled=false;group.add(mesh);
       // Separate fine 3D strands stay visible when the petal is viewed edge-on.
@@ -68,7 +69,7 @@ export function makeVeilPetals(progressUniform,kind='lotus') {
       for(let step=0;step<96;step++){add(step/96*2-1,1);add((step+1)/96*2-1,1);}
       const lineGeometry=new THREE.BufferGeometry();lineGeometry.setAttribute('position',new THREE.Float32BufferAttribute(linePos,3));lineGeometry.setAttribute('petalUV',new THREE.Float32BufferAttribute(lineUv,2));
       const lineMaterial=new THREE.ShaderMaterial({uniforms,vertexShader,transparent:true,depthWrite:false,
-        fragmentShader:`uniform vec3 petalColor;uniform float layer,layers;varying vec2 vUv;void main(){float edge=smoothstep(.985,1.,vUv.y);float n=layer/(layers-1.);vec3 c=mix(petalColor,vec3(.94,.94,1.),.65);gl_FragColor=vec4(c,(mix(.095,.06,n)+edge*.14)*smoothstep(.08,.3,vUv.y));}`});
+        fragmentShader:`uniform vec3 petalColor,edgeColor;uniform float layer,layers;varying vec2 vUv;void main(){float edge=smoothstep(.985,1.,vUv.y);float n=layer/(layers-1.);vec3 c=mix(petalColor,edgeColor,smoothstep(.1,1.,vUv.y)*(.85-n*.3));gl_FragColor=vec4(c,(mix(.065,.045,n)+edge*.12)*smoothstep(.08,.3,vUv.y));}`});
       const lines=new THREE.LineSegments(lineGeometry,lineMaterial);lines.frustumCulled=false;mesh.add(lines);
     }
   });

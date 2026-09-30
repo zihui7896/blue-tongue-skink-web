@@ -1,6 +1,6 @@
 import { initSurprise } from "./features/surprise.js?v=gift-1";
 import { initSketchStudio } from "./features/sketch-studio.js?v=watercolor-2";
-import{initSidebar}from"./components/sidebar.js";import{initPetPlayground}from"./features/pet-playground.js";import{initEffectsGallery}from"./features/effects-gallery.js?v=reference-8";import{CAT_STATES}from"./data/pet-states.js?v=cat-states-1";
+import{initSidebar}from"./components/sidebar.js";import{initPetPlayground}from"./features/pet-playground.js";import{initEffectsGallery}from"./features/effects-gallery.js?v=reference-10";import{CAT_STATES}from"./data/pet-states.js?v=cat-states-1";
 initPetPlayground();
 initPetPlayground({rootSelector:'[data-pet-playground="cat"]',states:CAT_STATES,petName:"橘团",dialogText:"喵呜",spritePath:"ju-tuan-cat/spritesheet.webp"});
 const effects=initEffectsGallery();

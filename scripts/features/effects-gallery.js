@@ -8,8 +8,8 @@ export function initEffectsGallery() {
     if (loading.has(card)) return;
     const isReference = card.hasAttribute('data-bloom-video');
     const module = isReference
-      ? import('../effects/particle-bloom/ReferenceBloomEffect.js?v=reference-8')
-      : import('../effects/particle-bloom/ParticleBloomEffect.js?v=flowers-19');
+      ? import('../effects/particle-bloom/ReferenceBloomEffect.js?v=reference-10')
+      : import('../effects/particle-bloom/ParticleBloomEffect.js?v=flowers-21');
     const task = module.then(exports => {
       const Effect = isReference ? exports.ReferenceBloomEffect : exports.ParticleBloomEffect;
       const effect = new Effect(card);
