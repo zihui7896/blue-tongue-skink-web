@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="styles/components/sketch-studio.css?v=watercolor-2">
   <link rel="stylesheet" href="styles/components/agreement-game.css?v=arcade-2">
   <link rel="stylesheet" href="styles/components/agreement-arcade.css?v=time-option-4">
+  <link rel="stylesheet" href="styles/components/dodge-arena.css?v=1">
 </head>
 <body>
   <div class="app-shell" id="app-shell">
@@ -38,6 +39,7 @@
         <button class="nav-item" type="button" data-view="thrill"><span class="nav-mark" aria-hidden="true">05</span><span class="nav-copy"><strong>刺激吓人</strong><small>沉浸模拟 · 四种体验</small></span></button>
         <button class="nav-item" type="button" data-view="light"><span class="nav-mark" aria-hidden="true">06</span><span class="nav-copy"><strong>一笔一画</strong><small>滑动鼠标，慢慢成画</small></span></button>
         <button class="nav-item" type="button" data-view="agreement"><span class="nav-mark" aria-hidden="true">07</span><span class="nav-copy"><strong>同意用户协议</strong><small>三档难度 · 手速与耐心</small></span></button>
+        <button class="nav-item" type="button" data-view="dodge"><span class="nav-mark" aria-hidden="true">08</span><span class="nav-copy"><strong>极限闪避</strong><small>60 秒弹幕 · 冲刺与擦弹</small></span></button>
       </nav>
       <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span><span class="sidebar-footer-copy"><strong>本地运行</strong><small>无需联网与构建</small></span></div>
     </aside>
@@ -184,9 +186,33 @@
         <div data-agreement-game></div>
         <p class="agreement-credit">灵感来自 <a href="https://store.steampowered.com/app/3757210/Agreeee/?l=schinese" target="_blank" rel="noopener noreferrer">Steam《同意用户协议》↗</a> · 本站独立制作的玩法改编，非官方移植。游戏内协议均为虚构。</p>
       </section>
+      <section class="view dodge-view" id="view-dodge" data-view-panel="dodge" hidden>
+        <header class="page-header"><div><span class="eyebrow">REACT / DASH / SURVIVE · 008</span><h1>极限闪避 <em>Neon Rush</em></h1><p>再靠近一点，再快一点。你能撑过这 60 秒吗？</p></div><span class="collection-count">实时操作 · 三档挑战</span></header>
+        <div class="dodge-layout">
+          <div class="dodge-machine" data-dodge-machine>
+            <div class="dodge-hud"><div><small>剩余时间</small><strong data-dodge-time>60.0<em>s</em></strong></div><div><small>本局得分</small><strong data-dodge-score>00000</strong></div><div><small>护盾</small><strong data-dodge-lives aria-label="剩余 3 格护盾">◆ ◆ ◆</strong></div><div><small>当前阶段</small><strong class="dodge-wave" data-dodge-wave>交叉火力</strong></div></div>
+            <div class="dodge-field">
+              <canvas data-dodge-canvas width="960" height="600" tabindex="0" aria-label="极限闪避游戏。鼠标移动或触屏拖动控制青色光点，方向键或 WASD 移动，空格冲刺，P 或 Escape 暂停。" aria-describedby="dodge-help"></canvas>
+              <div class="dodge-overlay" data-dodge-overlay>
+                <span class="dodge-tag" data-dodge-tag>60 SECONDS. ONE MORE TRY.</span><h2 data-dodge-title>把心跳，交给指尖。</h2><p data-dodge-message>躲开粉色弹幕，收集金色能量。<br>危险贴身而过的瞬间，就是你的高分时刻。</p><button class="dodge-primary" type="button" data-dodge-start>开始挑战 ↗</button>
+              </div>
+              <span class="dodge-feedback" data-dodge-feedback aria-hidden="true"></span>
+            </div>
+            <div class="dodge-toolbar"><button type="button" data-dodge-dash disabled>冲刺 · 就绪 <kbd>Space</kbd></button><button type="button" data-dodge-pause disabled>暂停 <kbd>P</kbd></button><button type="button" data-dodge-reset>重开</button><button type="button" data-dodge-sound aria-pressed="false">音效：关</button><button type="button" data-dodge-fullscreen>全屏 ↗</button></div>
+            <p class="dodge-status" data-dodge-status role="status">准备好后点击开始。切换栏目或离开窗口会自动暂停。</p>
+          </div>
+          <aside class="dodge-guide">
+            <span class="dodge-guide-kicker">CHOOSE YOUR INTENSITY</span><h2>心跳，调到哪一档？</h2>
+            <div class="dodge-difficulties" role="group" aria-label="选择闪避难度"><button type="button" data-dodge-level="easy" aria-pressed="false"><span>01</span><div><strong>热身</strong><small>慢一点，找到节奏</small></div></button><button type="button" data-dodge-level="normal" aria-pressed="true"><span>02</span><div><strong>心跳</strong><small>密集火力，刚好上头</small></div></button><button type="button" data-dodge-level="hard" aria-pressed="false"><span>03</span><div><strong>极限</strong><small>更快、更密、更窄</small></div></button></div>
+            <div class="dodge-record"><span>本机最佳 · <b data-dodge-record-level>心跳</b></span><strong data-dodge-best>—</strong><small>每档独立记录，下一局超越自己。</small></div>
+            <div class="dodge-rules" id="dodge-help"><h3>怎么把危险变成分数</h3><p><i class="dodge-dot cyan"></i><span><strong>移动青色光点</strong>鼠标移动 / 手指拖动 / WASD 或方向键。</span></p><p><i class="dodge-dot pink"></i><span><strong>躲开粉色弹幕</strong>共 3 格护盾；贴身擦弹 +80 分，连续擦弹有倍率。</span></p><p><i class="dodge-dot gold"></i><span><strong>收集金色能量</strong>每颗 +250 分，同时刷新冲刺冷却。</span></p><p><i class="dodge-dot dash"></i><span><strong>冲刺穿过火力</strong>空格 / 下方冲刺按钮，短暂无敌，每 2.4 秒可用一次。</span></p></div>
+            <div class="dodge-sequence"><small>01 交叉火力 → 02 旋涡弹幕 → 03 激光封锁</small><p>激光先亮虚线预警，再发射。寻找缺口，或者用冲刺穿过去。</p></div>
+          </aside>
+        </div>
+      </section>
       <footer class="site-footer"><a href="index.html">返回欢迎首页</a><span>纯静态模块化应用</span></footer>
     </main>
   </div>
-  <script type="module" src="scripts/main.js?v=agreement-chase-input-5"></script>
+  <script type="module" src="scripts/main.js?v=dodge-1"></script>
 </body>
 </html>

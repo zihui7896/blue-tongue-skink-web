@@ -6,6 +6,18 @@ initPetPlayground({rootSelector:'[data-pet-playground="cat"]',states:CAT_STATES,
 const effects=initEffectsGallery();
 const surprise=initSurprise();
 const lightStudio=initSketchStudio();
+let dodgeArena, dodgeLoading;
+function showDodge(visible) {
+  if(dodgeArena){dodgeArena.setVisible(visible);return;}
+  if(!visible || dodgeLoading)return;
+  dodgeLoading=import('./features/dodge-arena.js?v=1').then(({initDodgeArena})=>{
+    dodgeArena=initDodgeArena();
+    dodgeArena.setVisible(currentView==='dodge');
+  }).catch(error=>{
+    document.querySelector('[data-dodge-status]').textContent='游戏暂未加载成功，请切换栏目后重试。';
+    console.error('Dodge arena could not be loaded',error);
+  }).finally(()=>{dodgeLoading=null;});
+}
 let agreementGame, agreementLoading;
 function showAgreement(visible) {
   if(agreementGame){agreementGame.setVisible(visible);return;}
@@ -37,4 +49,5 @@ initSidebar({onViewChange:name=>{
   lightStudio.setVisible(name==='light');
   showAgreement(name==='agreement');
   showThrill(name==='thrill');
+  showDodge(name==='dodge');
 }});
